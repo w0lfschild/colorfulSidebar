@@ -64,7 +64,6 @@ struct TFENode {
 
 - (void)CVZCSm_new_TSidebarItemCell_drawWithFrame:(NSRect)cellFrame inView:(NSView *)controlView
 {
-    NSLog(@"C");
     NSRect rect = [(NSCell *)self imageRectForBounds:cellFrame];
     if (!NSIsEmptyRect(rect)) {
         SEL aSEL = @selector(accessibilityAttributeNames);
@@ -150,7 +149,6 @@ struct TFENode {
 
 - (NSImage *)CVZCSm_new_NSNavFBENode_sidebarIcon
 {
-    NSLog(@"A");
     if (![self respondsToSelector:@selector(path)]
         || ![self respondsToSelector:@selector(URL)]
         || ![self respondsToSelector:@selector(name)]
@@ -209,7 +207,6 @@ struct TFENode {
 
 - (NSImage *)CVZCSm_new_NSNavMediaNode_sidebarIcon
 {
-    NSLog(@"B");
     NSImage *image = [self CVZCSm_new_NSNavMediaNode_sidebarIcon];
     NSImage *colorImage = CVZCSgIconMappingDict[[image name]];
     if (colorImage) {
@@ -220,7 +217,7 @@ struct TFENode {
 
 @end
 
-@interface swag_OG : NSObject
+@interface swag_OG : NSTableCellView
 @end
 
 @implementation swag_OG
@@ -233,7 +230,6 @@ struct TFENode {
             SEL aSEL = @selector(accessibilityAttributeNames);
             if ([self respondsToSelector:aSEL] && [[self performSelector:aSEL] containsObject:NSAccessibilityURLAttribute]) {
                 NSURL *aURL = [self accessibilityAttributeValue:NSAccessibilityURLAttribute];
-                NSLog(@"%@", aURL.path);
                 NSImage *image = nil;
                 if ([aURL isFileURL]) {
                     NSString *path = [aURL path];
@@ -253,41 +249,31 @@ struct TFENode {
                 if (!image) {
                     aSEL = @selector(name);
                     if ([self respondsToSelector:aSEL]) {
-                        image = CVZCSgIconMappingDict[[self performSelector:aSEL]];
+                        NSString* s = [self performSelector:aSEL];
+                        image = CVZCSgIconMappingDict[s];
+                        if ([s isEqualToString:@"iCloud Drive"])
+                            image = CVZCSgIconMappingDict[@"x-applefinder-vnode:iCloud"];
                     }
                 }
-//                if (!image) {
-//                    aSEL = @selector(image);
-//                    if ([self respondsToSelector:aSEL]) {
-//                        NSImage *sidebarImage = [self performSelector:aSEL];
-//                        aSEL = @selector(sourceImage);
-//                        if ([sidebarImage respondsToSelector:aSEL]) {
-//                            sidebarImage = [sidebarImage performSelector:aSEL];
-//                        }
-//                        if ([sidebarImage name]) {
-//                            image = CVZCSgIconMappingDict[[sidebarImage name]];
-//                        }
-//                        // Tags
-//                        if (!image) {
-//                            if ([[sidebarImage representations] count] == 1) {
-//                                image = [self performSelector:@selector(image)];
-//                            }
-//                        }
-//                    }
-//                }
-//                if (!image) {
-//                    Class cls = NSClassFromString(@"FINode");
-//                    if ([cls respondsToSelector:@selector(nodeFromNodeRef:)] && [[self class] respondsToSelector:@selector(nodeForItem:)]) {
-//                        struct TFENode *node = (struct TFENode *)CFBridgingRetain([[self class] performSelector:@selector(nodeForItem:) withObject:self]);
-//                        id finode = [cls nodeFromNodeRef:node->fNodeRef];
-//                        if ([finode respondsToSelector:@selector(createAlternativeIconRepresentationWithOptions:)]) {
-//                            IconRef iconRef = [finode createAlternativeIconRepresentationWithOptions:nil];
-//                            image = [[[NSImage alloc] initWithIconRef:iconRef] autorelease];
-//                            ReleaseIconRef(iconRef);
-//                        }
-//                    }
-//                }
-                
+                if (!image) {
+                    aSEL = @selector(image);
+                    if ([i respondsToSelector:aSEL]) {
+                        NSImage *sidebarImage = [i performSelector:aSEL];
+                        aSEL = @selector(sourceImage);
+                        if ([sidebarImage respondsToSelector:aSEL]) {
+                            sidebarImage = [sidebarImage performSelector:aSEL];
+                        }
+                        if ([sidebarImage name]) {
+                            image = CVZCSgIconMappingDict[[sidebarImage name]];
+                        }
+                        // Tags
+                        if (!image) {
+                            if ([[sidebarImage representations] count] == 1) {
+                                image = [self performSelector:@selector(image)];
+                            }
+                        }
+                    }
+                }
 //                NSLog(@"%@", image);
                 if (image)
                     [i setImage:image];
@@ -308,7 +294,7 @@ struct TFENode {
         Class cls;
         NSUInteger osx_ver = [[NSProcessInfo processInfo] operatingSystemVersion].minorVersion;
         SEL old, new;
-        NSLog(@"Loading...");
+        NSLog(@"Loading colorfulSidebar...");
         cls = NSClassFromString(@"TSidebarItemCell");
         if (cls) {
             [self performSelector:@selector(setUpIconMappingDict)];
@@ -349,6 +335,8 @@ struct TFENode {
 + (void)setUpIconMappingDict
 {
     NSString *path = [[NSBundle bundleForClass:self] pathForResource:@"icons" ofType:@"plist"];
+    if ([[NSProcessInfo processInfo] operatingSystemVersion].minorVersion >= 10)
+        path = [[NSBundle bundleForClass:self] pathForResource:@"icons10" ofType:@"plist"];
     NSDictionary *dict = [NSDictionary dictionaryWithContentsOfFile:path];
     if (!dict) {
         CVZCSgIconMappingDict = [NSDictionary new];
@@ -383,5 +371,8 @@ struct TFENode {
         }
         CVZCSgIconMappingDict = [mdict copy];
     }
+    
+//    for (id key in CVZCSgIconMappingDict)
+//        NSLog(@"%@", key);
 }
 @end

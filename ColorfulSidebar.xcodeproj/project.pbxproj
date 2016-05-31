@@ -7,22 +7,22 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
-		8D5B49B0048680CD000E48DA /* InfoPlist.strings in Resources */ = {isa = PBXBuildFile; fileRef = 089C167DFE841241C02AAC07 /* InfoPlist.strings */; };
 		C398D84715BD8B0700543187 /* CVZCSController.m in Sources */ = {isa = PBXBuildFile; fileRef = C398D84615BD8B0700543187 /* CVZCSController.m */; };
-		C398D86115BD9D6400543187 /* icons.plist in Resources */ = {isa = PBXBuildFile; fileRef = C398D86015BD9D6400543187 /* icons.plist */; };
 		FBAE21EE1CFCCA4F007E5A8E /* ZKSwizzle.m in Sources */ = {isa = PBXBuildFile; fileRef = FBAE21ED1CFCCA4F007E5A8E /* ZKSwizzle.m */; };
+		FBAE21F11CFD21AC007E5A8E /* icons.plist in Resources */ = {isa = PBXBuildFile; fileRef = FBAE21EF1CFD21AC007E5A8E /* icons.plist */; };
+		FBAE21F21CFD21AC007E5A8E /* icons10.plist in Resources */ = {isa = PBXBuildFile; fileRef = FBAE21F01CFD21AC007E5A8E /* icons10.plist */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
-		089C167EFE841241C02AAC07 /* English */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.strings; name = English; path = English.lproj/InfoPlist.strings; sourceTree = "<group>"; };
 		32DBCF630370AF2F00C91783 /* ColorfulSidebar_Prefix.pch */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ColorfulSidebar_Prefix.pch; sourceTree = "<group>"; };
 		8D5B49B6048680CD000E48DA /* ColorfulSidebar.bundle */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = ColorfulSidebar.bundle; sourceTree = BUILT_PRODUCTS_DIR; };
 		8D5B49B7048680CD000E48DA /* Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		C398D84515BD8B0700543187 /* CVZCSController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CVZCSController.h; sourceTree = "<group>"; };
 		C398D84615BD8B0700543187 /* CVZCSController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CVZCSController.m; sourceTree = "<group>"; };
-		C398D86015BD9D6400543187 /* icons.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = icons.plist; sourceTree = "<group>"; };
 		FBAE21EC1CFCCA4F007E5A8E /* ZKSwizzle.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ZKSwizzle.h; sourceTree = "<group>"; };
 		FBAE21ED1CFCCA4F007E5A8E /* ZKSwizzle.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ZKSwizzle.m; sourceTree = "<group>"; };
+		FBAE21EF1CFD21AC007E5A8E /* icons.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = icons.plist; sourceTree = "<group>"; };
+		FBAE21F01CFD21AC007E5A8E /* icons10.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = icons10.plist; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -50,9 +50,9 @@
 		089C167CFE841241C02AAC07 /* Resources */ = {
 			isa = PBXGroup;
 			children = (
-				C398D86015BD9D6400543187 /* icons.plist */,
+				FBAE21EF1CFD21AC007E5A8E /* icons.plist */,
+				FBAE21F01CFD21AC007E5A8E /* icons10.plist */,
 				8D5B49B7048680CD000E48DA /* Info.plist */,
-				089C167DFE841241C02AAC07 /* InfoPlist.strings */,
 			);
 			name = Resources;
 			sourceTree = "<group>";
@@ -135,8 +135,8 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				8D5B49B0048680CD000E48DA /* InfoPlist.strings in Resources */,
-				C398D86115BD9D6400543187 /* icons.plist in Resources */,
+				FBAE21F21CFD21AC007E5A8E /* icons10.plist in Resources */,
+				FBAE21F11CFD21AC007E5A8E /* icons.plist in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -153,17 +153,6 @@
 			runOnlyForDeploymentPostprocessing = 0;
 		};
 /* End PBXSourcesBuildPhase section */
-
-/* Begin PBXVariantGroup section */
-		089C167DFE841241C02AAC07 /* InfoPlist.strings */ = {
-			isa = PBXVariantGroup;
-			children = (
-				089C167EFE841241C02AAC07 /* English */,
-			);
-			name = InfoPlist.strings;
-			sourceTree = "<group>";
-		};
-/* End PBXVariantGroup section */
 
 /* Begin XCBuildConfiguration section */
 		1DEB913B08733D840010E9CD /* Debug */ = {
