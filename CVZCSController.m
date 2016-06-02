@@ -9,82 +9,27 @@
 //
 
 @import AppKit;
-#import "CVZCSController.h"
 #import "ZKSwizzle.h"
-#import <objc/objc-class.h>
+
+@interface CVZCSController : NSObject
+@end
 
 static NSDictionary *CVZCSgIconMappingDict = nil;
 
-void CVZCSfSwizzleInstanceMethod (Class cls, SEL old, SEL new) {
-    Method mold = class_getInstanceMethod(cls, old);
-    Method mnew = class_getInstanceMethod(cls, new);
-    if (mold && mnew) {
-        if (class_addMethod(cls, old, method_getImplementation(mold), method_getTypeEncoding(mold))) {
-            mold = class_getInstanceMethod(cls, old);
-        }
-        if (class_addMethod(cls, new, method_getImplementation(mnew), method_getTypeEncoding(mnew))) {
-            mnew = class_getInstanceMethod(cls, new);
-        }
-        method_exchangeImplementations(mold, mnew);
-    }
-}
-
-void CVZCSfSwizzleClassMethod (Class cls, SEL old, SEL new) {
-    Method mold = class_getClassMethod(cls, old);
-    Method mnew = class_getClassMethod(cls, new);
-    if (mold && mnew) {
-        Class metaCls = objc_getMetaClass(class_getName(cls));
-        if (class_addMethod(metaCls, old, method_getImplementation(mold), method_getTypeEncoding(mold))) {
-            mold = class_getClassMethod(cls, old);
-        }
-        if (class_addMethod(metaCls, new, method_getImplementation(mnew), method_getTypeEncoding(mnew))) {
-            mnew = class_getClassMethod(cls, new);
-        }
-        method_exchangeImplementations(mold, mnew);
-    }
-}
-
-struct TFENode {
-    struct OpaqueNodeRef *fNodeRef;
-};
-
-@interface NSObject (CVZCS)
-
-- (NSString *)path;
-- (NSURL *)URL;
-- (NSString *)name;
-- (BOOL)isAlias;
-- (id)getNodeAsResolvedNode:(BOOL)arg1;
-+ (id)nodeFromNodeRef:(struct OpaqueNodeRef *)nodeRef;
-- (struct OpaqueIconRef *)createAlternativeIconRepresentationWithOptions:(id)arg1;
-
+@interface wb_TSidebarItemCell : NSObject
 @end
 
-@implementation NSObject (CVZCSColorfulSidebar)
+@implementation wb_TSidebarItemCell
 
-- (void)CVZCSm_new_TSidebarItemCell_drawWithFrame:(NSRect)cellFrame inView:(NSView *)controlView
+- (void)wb_setImage:(id)i
 {
-    NSRect rect = [(NSCell *)self imageRectForBounds:cellFrame];
-    if (!NSIsEmptyRect(rect)) {
-        SEL aSEL = @selector(accessibilityAttributeNames);
-        if ([self respondsToSelector:aSEL] && [[self performSelector:aSEL] containsObject:NSAccessibilityURLAttribute]) {
-            NSURL *aURL = [self accessibilityAttributeValue:NSAccessibilityURLAttribute];
-            NSImage *image = nil;
-            if ([aURL isFileURL]) {
-                NSString *path = [aURL path];
-                image = CVZCSgIconMappingDict[path];
-                if (!image) {
-                    aSEL = @selector(name);
-                    if ([self respondsToSelector:aSEL]) {
-                        image = CVZCSgIconMappingDict[[self performSelector:aSEL]];
-                    }
-                }
-                if (!image) {
-                    image = [[NSWorkspace sharedWorkspace] iconForFile:path];
-                }
-            } else {
-                image = CVZCSgIconMappingDict[[aURL absoluteString]];
-            }
+    SEL aSEL = @selector(accessibilityAttributeNames);
+    if ([self respondsToSelector:aSEL] && [[self performSelector:aSEL] containsObject:NSAccessibilityURLAttribute]) {
+        NSURL *aURL = [self accessibilityAttributeValue:NSAccessibilityURLAttribute];
+        NSImage *image = nil;
+        if ([aURL isFileURL]) {
+            NSString *path = [aURL path];
+            image = CVZCSgIconMappingDict[path];
             if (!image) {
                 aSEL = @selector(name);
                 if ([self respondsToSelector:aSEL]) {
@@ -92,193 +37,59 @@ struct TFENode {
                 }
             }
             if (!image) {
-                aSEL = @selector(image);
-                if ([self respondsToSelector:aSEL]) {
-                    NSImage *sidebarImage = [self performSelector:aSEL];
-                    aSEL = @selector(sourceImage);
-                    if ([sidebarImage respondsToSelector:aSEL]) {
-                        sidebarImage = [sidebarImage performSelector:aSEL];
-                    }
-                    if ([sidebarImage name]) {
-                        image = CVZCSgIconMappingDict[[sidebarImage name]];
-                    }
-                    // Tags
-                    if (!image) {
-                        if ([[sidebarImage representations] count] == 1) {
-                            image = [self performSelector:@selector(image)];
-                        }
-                    }
-                }
+                image = [[NSWorkspace sharedWorkspace] iconForFile:path];
             }
-            if (!image) {
-                Class cls = NSClassFromString(@"FINode");
-                if ([cls respondsToSelector:@selector(nodeFromNodeRef:)] && [[self class] respondsToSelector:@selector(nodeForItem:)]) {
-                    struct TFENode *node = (struct TFENode *)CFBridgingRetain([[self class] performSelector:@selector(nodeForItem:) withObject:self]);
-                    id finode = [cls nodeFromNodeRef:node->fNodeRef];
-                    if ([finode respondsToSelector:@selector(createAlternativeIconRepresentationWithOptions:)]) {
-                        IconRef iconRef = [finode createAlternativeIconRepresentationWithOptions:nil];
-                        image = [[[NSImage alloc] initWithIconRef:iconRef] autorelease];
-                        ReleaseIconRef(iconRef);
-                    }
-                }
-            }
-            
-            if (image) {
-                NSImageCell *imageCell;
-                object_getInstanceVariable(self, "_imageCell", (void **)&imageCell);
-                [imageCell setImage:image];
+        } else {
+            image = CVZCSgIconMappingDict[[aURL absoluteString]];
+        }
+        if (!image) {
+            aSEL = @selector(name);
+            if ([self respondsToSelector:aSEL]) {
+                NSString* s = [self performSelector:aSEL];
+                image = CVZCSgIconMappingDict[s];
+                if ([s isEqualToString:@"iCloud Drive"])
+                    image = CVZCSgIconMappingDict[@"x-applefinder-vnode:iCloud"];
             }
         }
-    }
-    
-    [self CVZCSm_new_TSidebarItemCell_drawWithFrame:cellFrame inView:controlView];
-}
-
-+ (void)CVZCSm_new_TSidebarItemCell_initialize
-{
-    if ([[self className] isEqualToString:@"FI_TSidebarItemCell"]) {
-        if (!CVZCSgIconMappingDict) {
-            [CVZCSController performSelector:@selector(setUpIconMappingDict)];
-            SEL old = @selector(drawWithFrame:inView:);
-            SEL new = @selector(CVZCSm_new_TSidebarItemCell_drawWithFrame:inView:);
-            CVZCSfSwizzleInstanceMethod(self, old, new);
-        }
-    }
-    [self CVZCSm_new_TSidebarItemCell_initialize];
-}
-
-- (NSImage *)CVZCSm_new_NSNavFBENode_sidebarIcon
-{
-    if (![self respondsToSelector:@selector(path)]
-        || ![self respondsToSelector:@selector(URL)]
-        || ![self respondsToSelector:@selector(name)]
-        || ![self respondsToSelector:@selector(isAlias)]
-        || ![self respondsToSelector:@selector(getNodeAsResolvedNode:)]) {
-        return [self CVZCSm_new_NSNavFBENode_sidebarIcon];
-    }
-    
-    NSImage *colorImage = nil;
-    
-    NSString *path = [self path];
-    if ([path isAbsolutePath]) {
-        colorImage = CVZCSgIconMappingDict[path];
-        if (colorImage) {
-            return colorImage;
-        }
-        colorImage = CVZCSgIconMappingDict[[self name]];
-        if (colorImage) {
-            return colorImage;
-        }
-        colorImage = [[NSWorkspace sharedWorkspace] iconForFile:path];
-        if (colorImage) {
-            return colorImage;
-        }
-    }
-    
-    if ([self isAlias]) {
-        [self getNodeAsResolvedNode:YES];
-    }
-    
-    SEL aSEL = @selector(isComputerNode);
-    if ([self respondsToSelector:aSEL] && [self performSelector:aSEL]) {
-        return [NSImage imageNamed:NSImageNameComputer];
-    }
-    
-    colorImage = CVZCSgIconMappingDict[[[self URL] absoluteString]];
-    if (colorImage) {
-        return colorImage;
-    }
-    
-    colorImage = CVZCSgIconMappingDict[[self name]];
-    if (colorImage) {
-        return colorImage;
-    }
-    
-    aSEL = @selector(icon);
-    if ([self respondsToSelector:aSEL]) {
-        colorImage = [self performSelector:aSEL];
-        if (colorImage) {
-            return colorImage;
-        }
-    }
-    
-    return [self CVZCSm_new_NSNavFBENode_sidebarIcon];
-}
-
-- (NSImage *)CVZCSm_new_NSNavMediaNode_sidebarIcon
-{
-    NSImage *image = [self CVZCSm_new_NSNavMediaNode_sidebarIcon];
-    NSImage *colorImage = CVZCSgIconMappingDict[[image name]];
-    if (colorImage) {
-        image = colorImage;
-    }
-    return image;
-}
-
-@end
-
-@interface swag_OG : NSTableCellView
-@end
-
-@implementation swag_OG
-
-- (_Bool)isHighlighted {
-    swag_OG *t = self;
-    for (id i in [t subviews])
-        if ([i class] == NSClassFromString(@"TImageView"))
-        {
-            SEL aSEL = @selector(accessibilityAttributeNames);
-            if ([self respondsToSelector:aSEL] && [[self performSelector:aSEL] containsObject:NSAccessibilityURLAttribute]) {
-                NSURL *aURL = [self accessibilityAttributeValue:NSAccessibilityURLAttribute];
-                NSImage *image = nil;
-                if ([aURL isFileURL]) {
-                    NSString *path = [aURL path];
-                    image = CVZCSgIconMappingDict[path];
-                    if (!image) {
-                        aSEL = @selector(name);
-                        if ([self respondsToSelector:aSEL]) {
-                            image = CVZCSgIconMappingDict[[self performSelector:aSEL]];
-                        }
-                    }
-                    if (!image) {
-                        image = [[NSWorkspace sharedWorkspace] iconForFile:path];
-                    }
-                } else {
-                    image = CVZCSgIconMappingDict[[aURL absoluteString]];
+        if (!image) {
+            aSEL = @selector(image);
+            if ([i respondsToSelector:aSEL]) {
+                NSImage *sidebarImage = [i performSelector:aSEL];
+                aSEL = @selector(sourceImage);
+                if ([sidebarImage respondsToSelector:aSEL]) {
+                    sidebarImage = [sidebarImage performSelector:aSEL];
                 }
+                if ([sidebarImage name]) {
+                    image = CVZCSgIconMappingDict[[sidebarImage name]];
+                }
+                // Tags
                 if (!image) {
-                    aSEL = @selector(name);
-                    if ([self respondsToSelector:aSEL]) {
-                        NSString* s = [self performSelector:aSEL];
-                        image = CVZCSgIconMappingDict[s];
-                        if ([s isEqualToString:@"iCloud Drive"])
-                            image = CVZCSgIconMappingDict[@"x-applefinder-vnode:iCloud"];
+                    if ([[sidebarImage representations] count] == 1) {
+                        image = [self performSelector:@selector(image)];
                     }
                 }
-                if (!image) {
-                    aSEL = @selector(image);
-                    if ([i respondsToSelector:aSEL]) {
-                        NSImage *sidebarImage = [i performSelector:aSEL];
-                        aSEL = @selector(sourceImage);
-                        if ([sidebarImage respondsToSelector:aSEL]) {
-                            sidebarImage = [sidebarImage performSelector:aSEL];
-                        }
-                        if ([sidebarImage name]) {
-                            image = CVZCSgIconMappingDict[[sidebarImage name]];
-                        }
-                        // Tags
-                        if (!image) {
-                            if ([[sidebarImage representations] count] == 1) {
-                                image = [self performSelector:@selector(image)];
-                            }
-                        }
-                    }
-                }
-//                NSLog(@"%@", image);
-                if (image)
-                    [i setImage:image];
             }
         }
+        if (image)
+            [i setImage:image];
+    }
+}
+
+// 10.9 + 10.10
+- (void)drawWithFrame:(struct CGRect)arg1 inView:(id)arg2
+{
+    [self wb_setImage:self];
+    ZKOrig(void, arg1, arg2);
+}
+
+// 10.11
+- (_Bool)isHighlighted
+{
+    SEL aSEL = @selector(subviews);
+    if ([self respondsToSelector:aSEL])
+        for (id i in [self performSelector:aSEL])
+            if ([i class] == NSClassFromString(@"TImageView"))
+                [self wb_setImage:i];
     return ZKOrig(_Bool);
 }
 
@@ -291,43 +102,10 @@ struct TFENode {
     if (NSAppKitVersionNumber < 1138)
         return;
     if (!CVZCSgIconMappingDict) {
-        Class cls;
-        NSUInteger osx_ver = [[NSProcessInfo processInfo] operatingSystemVersion].minorVersion;
-        SEL old, new;
         NSLog(@"Loading colorfulSidebar...");
-        cls = NSClassFromString(@"TSidebarItemCell");
-        if (cls) {
+        if (NSClassFromString(@"TSidebarItemCell")) {
             [self performSelector:@selector(setUpIconMappingDict)];
-            if (osx_ver >= 11) {
-                ZKSwizzle(swag_OG, TSidebarItemCell);
-            } else {
-                old = @selector(drawWithFrame:inView:);
-                new = @selector(CVZCSm_new_TSidebarItemCell_drawWithFrame:inView:);
-                CVZCSfSwizzleInstanceMethod(cls, old, new);
-                
-                cls = NSClassFromString(@"NSNavFBENode");
-                old = @selector(sidebarIcon);
-                new = @selector(CVZCSm_new_NSNavFBENode_sidebarIcon);
-                CVZCSfSwizzleInstanceMethod(cls, old, new);
-                
-                cls = NSClassFromString(@"NSNavMediaNode");
-                old = @selector(sidebarIcon);
-                new = @selector(CVZCSm_new_NSNavMediaNode_sidebarIcon);
-                CVZCSfSwizzleInstanceMethod(cls, old, new);
-            }
-        } else {
-            cls = NSClassFromString(@"FI_TSidebarItemCell");
-            if (cls) {
-                [self performSelector:@selector(setUpIconMappingDict)];
-                old = @selector(drawWithFrame:inView:);
-                new = @selector(CVZCSm_new_TSidebarItemCell_drawWithFrame:inView:);
-                CVZCSfSwizzleInstanceMethod(cls, old, new);
-            } else {
-                cls = [NSTextFieldCell class];
-                old = @selector(initialize);
-                new = @selector(CVZCSm_new_TSidebarItemCell_initialize);
-                CVZCSfSwizzleClassMethod(cls, old, new);
-            }
+            ZKSwizzle(wb_TSidebarItemCell, TSidebarItemCell);
         }
     }
 }
@@ -358,7 +136,6 @@ struct TFENode {
                     [[[image representations] lastObject] setSize:size];
                 }
             }
-            
             if (image) {
                 NSArray *arr = dict[key];
                 for (key in arr) {
@@ -371,8 +148,6 @@ struct TFENode {
         }
         CVZCSgIconMappingDict = [mdict copy];
     }
-    
-//    for (id key in CVZCSgIconMappingDict)
-//        NSLog(@"%@", key);
 }
+
 @end

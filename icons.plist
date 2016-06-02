@@ -2,6 +2,10 @@
 <!DOCTYPE plist PUBLIC "-//Apple//DTD PLIST 1.0//EN" "http://www.apple.com/DTDs/PropertyList-1.0.dtd">
 <plist version="1.0">
 <dict>
+	<key>/System/Library/CoreServices/CoreTypes.bundle/Contents/Resources/TrashIcon.icns</key>
+	<array>
+		<string>~/.Trash</string>
+	</array>
 	<key>tAps</key>
 	<array>
 		<string>/Applications</string>
@@ -55,10 +59,12 @@
 	<key>/System/Library/InternetAccounts/iCloud.iaplugin/Contents/Resources/iCloudSidebar.tiff</key>
 	<array>
 		<string>x-applefinder-vnode:CloudDocs%20libraries</string>
+		<string>x-applefinder-vnode:iCloud</string>
 	</array>
 	<key>/System/Library/CoreServices/CoreTypes.bundle/Contents/Resources/AirDrop.icns</key>
 	<array>
 		<string>x-applefinder-vnode:AirDrop</string>
+		<string>AirDrop</string>
 	</array>
 	<key>/System/Library/CoreServices/CoreTypes.bundle/Contents/Resources/CDAudioVolumeIcon.icns</key>
 	<array>

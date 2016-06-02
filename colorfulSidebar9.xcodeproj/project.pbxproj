@@ -14,10 +14,8 @@
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
-		32DBCF630370AF2F00C91783 /* ColorfulSidebar_Prefix.pch */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ColorfulSidebar_Prefix.pch; sourceTree = "<group>"; };
-		8D5B49B6048680CD000E48DA /* ColorfulSidebar.bundle */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = ColorfulSidebar.bundle; sourceTree = BUILT_PRODUCTS_DIR; };
+		8D5B49B6048680CD000E48DA /* colorfulSidebar9.bundle */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = colorfulSidebar9.bundle; sourceTree = BUILT_PRODUCTS_DIR; };
 		8D5B49B7048680CD000E48DA /* Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
-		C398D84515BD8B0700543187 /* CVZCSController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CVZCSController.h; sourceTree = "<group>"; };
 		C398D84615BD8B0700543187 /* CVZCSController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CVZCSController.m; sourceTree = "<group>"; };
 		FBAE21EC1CFCCA4F007E5A8E /* ZKSwizzle.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ZKSwizzle.h; sourceTree = "<group>"; };
 		FBAE21ED1CFCCA4F007E5A8E /* ZKSwizzle.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ZKSwizzle.m; sourceTree = "<group>"; };
@@ -40,7 +38,6 @@
 			isa = PBXGroup;
 			children = (
 				08FB77AFFE84173DC02AAC07 /* Classes */,
-				32C88E010371C26100C91783 /* Other Sources */,
 				089C167CFE841241C02AAC07 /* Resources */,
 				19C28FB8FE9D52D311CA2CBB /* Products */,
 			);
@@ -62,7 +59,6 @@
 			children = (
 				FBAE21EC1CFCCA4F007E5A8E /* ZKSwizzle.h */,
 				FBAE21ED1CFCCA4F007E5A8E /* ZKSwizzle.m */,
-				C398D84515BD8B0700543187 /* CVZCSController.h */,
 				C398D84615BD8B0700543187 /* CVZCSController.m */,
 			);
 			name = Classes;
@@ -71,25 +67,17 @@
 		19C28FB8FE9D52D311CA2CBB /* Products */ = {
 			isa = PBXGroup;
 			children = (
-				8D5B49B6048680CD000E48DA /* ColorfulSidebar.bundle */,
+				8D5B49B6048680CD000E48DA /* colorfulSidebar9.bundle */,
 			);
 			name = Products;
-			sourceTree = "<group>";
-		};
-		32C88E010371C26100C91783 /* Other Sources */ = {
-			isa = PBXGroup;
-			children = (
-				32DBCF630370AF2F00C91783 /* ColorfulSidebar_Prefix.pch */,
-			);
-			name = "Other Sources";
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
 
 /* Begin PBXNativeTarget section */
-		8D5B49AC048680CD000E48DA /* ColorfulSidebar */ = {
+		8D5B49AC048680CD000E48DA /* colorfulSidebar9 */ = {
 			isa = PBXNativeTarget;
-			buildConfigurationList = 1DEB913A08733D840010E9CD /* Build configuration list for PBXNativeTarget "ColorfulSidebar" */;
+			buildConfigurationList = 1DEB913A08733D840010E9CD /* Build configuration list for PBXNativeTarget "colorfulSidebar9" */;
 			buildPhases = (
 				8D5B49AF048680CD000E48DA /* Resources */,
 				8D5B49B1048680CD000E48DA /* Sources */,
@@ -99,10 +87,10 @@
 			);
 			dependencies = (
 			);
-			name = ColorfulSidebar;
+			name = colorfulSidebar9;
 			productInstallPath = "$(HOME)/Library/Bundles";
 			productName = ColorfulSidebar;
-			productReference = 8D5B49B6048680CD000E48DA /* ColorfulSidebar.bundle */;
+			productReference = 8D5B49B6048680CD000E48DA /* colorfulSidebar9.bundle */;
 			productType = "com.apple.product-type.bundle";
 		};
 /* End PBXNativeTarget section */
@@ -114,7 +102,7 @@
 				LastUpgradeCheck = 0730;
 				ORGANIZATIONNAME = cvz.;
 			};
-			buildConfigurationList = 1DEB913E08733D840010E9CD /* Build configuration list for PBXProject "ColorfulSidebar" */;
+			buildConfigurationList = 1DEB913E08733D840010E9CD /* Build configuration list for PBXProject "colorfulSidebar9" */;
 			compatibilityVersion = "Xcode 3.2";
 			developmentRegion = English;
 			hasScannedForEncodings = 1;
@@ -125,7 +113,7 @@
 			projectDirPath = "";
 			projectRoot = "";
 			targets = (
-				8D5B49AC048680CD000E48DA /* ColorfulSidebar */,
+				8D5B49AC048680CD000E48DA /* colorfulSidebar9 */,
 			);
 		};
 /* End PBXProject section */
@@ -166,11 +154,10 @@
 				GCC_MODEL_TUNING = G5;
 				GCC_OPTIMIZATION_LEVEL = 0;
 				GCC_PRECOMPILE_PREFIX_HEADER = YES;
-				GCC_PREFIX_HEADER = ColorfulSidebar_Prefix.pch;
 				INFOPLIST_FILE = Info.plist;
 				INSTALL_PATH = "$(HOME)/Library/Bundles";
 				PRODUCT_BUNDLE_IDENTIFIER = "jp.cvz.${PRODUCT_NAME:rfc1034Identifier}";
-				PRODUCT_NAME = ColorfulSidebar;
+				PRODUCT_NAME = colorfulSidebar9;
 				WRAPPER_EXTENSION = bundle;
 			};
 			name = Debug;
@@ -183,11 +170,10 @@
 				DEBUG_INFORMATION_FORMAT = "dwarf-with-dsym";
 				GCC_MODEL_TUNING = G5;
 				GCC_PRECOMPILE_PREFIX_HEADER = YES;
-				GCC_PREFIX_HEADER = ColorfulSidebar_Prefix.pch;
 				INFOPLIST_FILE = Info.plist;
 				INSTALL_PATH = "$(HOME)/Library/Bundles";
 				PRODUCT_BUNDLE_IDENTIFIER = "jp.cvz.${PRODUCT_NAME:rfc1034Identifier}";
-				PRODUCT_NAME = ColorfulSidebar;
+				PRODUCT_NAME = colorfulSidebar9;
 				WRAPPER_EXTENSION = bundle;
 			};
 			name = Release;
@@ -227,7 +213,7 @@
 /* End XCBuildConfiguration section */
 
 /* Begin XCConfigurationList section */
-		1DEB913A08733D840010E9CD /* Build configuration list for PBXNativeTarget "ColorfulSidebar" */ = {
+		1DEB913A08733D840010E9CD /* Build configuration list for PBXNativeTarget "colorfulSidebar9" */ = {
 			isa = XCConfigurationList;
 			buildConfigurations = (
 				1DEB913B08733D840010E9CD /* Debug */,
@@ -236,7 +222,7 @@
 			defaultConfigurationIsVisible = 0;
 			defaultConfigurationName = Release;
 		};
-		1DEB913E08733D840010E9CD /* Build configuration list for PBXProject "ColorfulSidebar" */ = {
+		1DEB913E08733D840010E9CD /* Build configuration list for PBXProject "colorfulSidebar9" */ = {
 			isa = XCConfigurationList;
 			buildConfigurations = (
 				1DEB913F08733D840010E9CD /* Debug */,

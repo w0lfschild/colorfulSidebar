@@ -2,6 +2,6 @@
 <Workspace
    version = "1.0">
    <FileRef
-      location = "self:ColorfulSidebar.xcodeproj">
+      location = "self:/Users/w0lf/GitHub/wb_colorfulSidebar_9/colorfulSidebar9.xcodeproj">
    </FileRef>
 </Workspace>
