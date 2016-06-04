@@ -15,7 +15,7 @@
             <BuildableReference
                BuildableIdentifier = "primary"
                BlueprintIdentifier = "8D5B49AC048680CD000E48DA"
-               BuildableName = "ColorfulSidebar.bundle"
+               BuildableName = "colorfulSidebar9.bundle"
                BlueprintName = "colorfulSidebar9"
                ReferencedContainer = "container:colorfulSidebar9.xcodeproj">
             </BuildableReference>
@@ -46,7 +46,7 @@
          <BuildableReference
             BuildableIdentifier = "primary"
             BlueprintIdentifier = "8D5B49AC048680CD000E48DA"
-            BuildableName = "ColorfulSidebar.bundle"
+            BuildableName = "colorfulSidebar9.bundle"
             BlueprintName = "colorfulSidebar9"
             ReferencedContainer = "container:colorfulSidebar9.xcodeproj">
          </BuildableReference>

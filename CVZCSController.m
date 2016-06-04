@@ -16,7 +16,14 @@
 
 static NSDictionary *CVZCSgIconMappingDict = nil;
 
+struct TFENode {
+    struct OpaqueNodeRef *fNodeRef;
+};
+
 @interface wb_TSidebarItemCell : NSObject
+- (id)getNodeAsResolvedNode:(BOOL)arg1;
++ (id)nodeFromNodeRef:(struct OpaqueNodeRef *)nodeRef;
+- (struct OpaqueIconRef *)createAlternativeIconRepresentationWithOptions:(id)arg1;
 @end
 
 @implementation wb_TSidebarItemCell
@@ -65,8 +72,21 @@ static NSDictionary *CVZCSgIconMappingDict = nil;
                 // Tags
                 if (!image) {
                     if ([[sidebarImage representations] count] == 1) {
-                        image = [self performSelector:@selector(image)];
+                        image = [i performSelector:@selector(image)];
                     }
+                }
+            }
+        }
+        if (!image) {
+            Class cls = NSClassFromString(@"FINode");
+            if (cls)
+            {
+                struct TFENode *node = &ZKHookIvar(self, struct TFENode, "_node");
+                id finode = [cls nodeFromNodeRef:node->fNodeRef];
+                if ([finode respondsToSelector:@selector(createAlternativeIconRepresentationWithOptions:)]) {
+                    IconRef iconRef = [finode createAlternativeIconRepresentationWithOptions:nil];
+                    image = [[[NSImage alloc] initWithIconRef:iconRef] autorelease];
+                    ReleaseIconRef(iconRef);
                 }
             }
         }
@@ -106,6 +126,11 @@ static NSDictionary *CVZCSgIconMappingDict = nil;
         if (NSClassFromString(@"TSidebarItemCell")) {
             [self performSelector:@selector(setUpIconMappingDict)];
             ZKSwizzle(wb_TSidebarItemCell, TSidebarItemCell);
+        }
+        if (NSClassFromString(@"FI_TSidebarItemCell")) {
+            NSLog(@"Test");
+            [self performSelector:@selector(setUpIconMappingDict)];
+            ZKSwizzle(wb_TSidebarItemCell, FI_TSidebarItemCell);
         }
     }
 }
