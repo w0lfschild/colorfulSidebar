@@ -2,6 +2,22 @@
 <!DOCTYPE plist PUBLIC "-//Apple//DTD PLIST 1.0//EN" "http://www.apple.com/DTDs/PropertyList-1.0.dtd">
 <plist version="1.0">
 <dict>
+	<key>/Applications/GitHub Desktop.app/Contents/Resources/AppIcon-Release.icns</key>
+	<array>
+		<string>~/GitHub</string>
+	</array>
+	<key>/Applications/Google Drive.app/Contents/Resources/GoogleDrive.icns</key>
+	<array>
+		<string>~/Google Drive</string>
+	</array>
+	<key>/System/Library/CoreServices/CoreTypes.bundle/Contents/Resources/KEXT.icns</key>
+	<array>
+		<string>/Library/Application Support/SIMBL/Plugins</string>
+	</array>
+	<key>/System/Library/CoreServices/CoreTypes.bundle/Contents/Resources/GenericApplicationIcon.icns</key>
+	<array>
+		<string>~/Library/Application Support</string>
+	</array>
 	<key>/System/Library/CoreServices/CoreTypes.bundle/Contents/Resources/TrashIcon.icns</key>
 	<array>
 		<string>~/.Trash</string>

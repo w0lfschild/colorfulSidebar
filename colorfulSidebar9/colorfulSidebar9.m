@@ -1,20 +1,18 @@
 //
-//  CVZCSController.m
-//  ColorfulSidebar
+//  colorfulSidebar9.m
+//  colorfulSidebar9
 //
-//  Created by cvz. on 12/07/23.
-//  Copyright 2012 cvz. All rights reserved.
-//	ColorfulSidebar is released under the MIT License.
-//	http://opensource.org/licenses/mit-license.php
+//  Created by Wolfgang Baird
+//  Copyright 2016 cvz.
 //
 
 @import AppKit;
 #import "ZKSwizzle.h"
 
-@interface CVZCSController : NSObject
+@interface colorfulSidebar9 : NSObject
 @end
 
-static NSDictionary *CVZCSgIconMappingDict = nil;
+static NSDictionary *cfsbIconMappingDict = nil;
 
 struct TFENode {
     struct OpaqueNodeRef *fNodeRef;
@@ -36,26 +34,26 @@ struct TFENode {
         NSImage *image = nil;
         if ([aURL isFileURL]) {
             NSString *path = [aURL path];
-            image = CVZCSgIconMappingDict[path];
+            image = cfsbIconMappingDict[path];
             if (!image) {
                 aSEL = @selector(name);
                 if ([self respondsToSelector:aSEL]) {
-                    image = CVZCSgIconMappingDict[[self performSelector:aSEL]];
+                    image = cfsbIconMappingDict[[self performSelector:aSEL]];
                 }
             }
             if (!image) {
                 image = [[NSWorkspace sharedWorkspace] iconForFile:path];
             }
         } else {
-            image = CVZCSgIconMappingDict[[aURL absoluteString]];
+            image = cfsbIconMappingDict[[aURL absoluteString]];
         }
         if (!image) {
             aSEL = @selector(name);
             if ([self respondsToSelector:aSEL]) {
                 NSString* s = [self performSelector:aSEL];
-                image = CVZCSgIconMappingDict[s];
+                image = cfsbIconMappingDict[s];
                 if ([s isEqualToString:@"iCloud Drive"])
-                    image = CVZCSgIconMappingDict[@"x-applefinder-vnode:iCloud"];
+                    image = cfsbIconMappingDict[@"x-applefinder-vnode:iCloud"];
             }
         }
         if (!image) {
@@ -67,7 +65,7 @@ struct TFENode {
                     sidebarImage = [sidebarImage performSelector:aSEL];
                 }
                 if ([sidebarImage name]) {
-                    image = CVZCSgIconMappingDict[[sidebarImage name]];
+                    image = cfsbIconMappingDict[[sidebarImage name]];
                 }
                 // Tags
                 if (!image) {
@@ -95,14 +93,14 @@ struct TFENode {
     }
 }
 
-// 10.9 + 10.10
+// 10.9 & 10.10
 - (void)drawWithFrame:(struct CGRect)arg1 inView:(id)arg2
 {
     [self wb_setImage:self];
     ZKOrig(void, arg1, arg2);
 }
 
-// 10.11
+// 10.11 +
 - (_Bool)isHighlighted
 {
     SEL aSEL = @selector(subviews);
@@ -115,23 +113,24 @@ struct TFENode {
 
 @end
 
-@implementation CVZCSController
+@implementation colorfulSidebar9
 
 + (void)load
 {
     if (NSAppKitVersionNumber < 1138)
         return;
-    if (!CVZCSgIconMappingDict) {
+    
+    if (!cfsbIconMappingDict) {
         NSLog(@"Loading colorfulSidebar...");
-        if (NSClassFromString(@"TSidebarItemCell")) {
-            [self performSelector:@selector(setUpIconMappingDict)];
+        
+        [self performSelector:@selector(setUpIconMappingDict)];
+        
+        if (NSClassFromString(@"TSidebarItemCell"))
             ZKSwizzle(wb_TSidebarItemCell, TSidebarItemCell);
-        }
-        if (NSClassFromString(@"FI_TSidebarItemCell")) {
-            NSLog(@"Test");
-            [self performSelector:@selector(setUpIconMappingDict)];
+        else if (NSClassFromString(@"FI_TSidebarItemCell"))
             ZKSwizzle(wb_TSidebarItemCell, FI_TSidebarItemCell);
-        }
+    
+        NSLog(@"%@ loaded into %@ on macOS 10.%ld", [self class], [[NSBundle mainBundle] bundleIdentifier], [[NSProcessInfo processInfo] operatingSystemVersion].minorVersion);
     }
 }
 
@@ -142,7 +141,7 @@ struct TFENode {
         path = [[NSBundle bundleForClass:self] pathForResource:@"icons10" ofType:@"plist"];
     NSDictionary *dict = [NSDictionary dictionaryWithContentsOfFile:path];
     if (!dict) {
-        CVZCSgIconMappingDict = [NSDictionary new];
+        cfsbIconMappingDict = [NSDictionary new];
     } else {
         NSMutableDictionary *mdict = [NSMutableDictionary dictionaryWithCapacity:0];
         for (NSString *key in dict) {
@@ -171,7 +170,7 @@ struct TFENode {
                 }
             }
         }
-        CVZCSgIconMappingDict = [mdict copy];
+        cfsbIconMappingDict = [mdict copy];
     }
 }
 
