@@ -12,6 +12,7 @@
 	</array>
 	<key>/System/Library/CoreServices/CoreTypes.bundle/Contents/Resources/KEXT.icns</key>
 	<array>
+		<string>~/Library/Application Support/SIMBL/Plugins</string>
 		<string>/Library/Application Support/SIMBL/Plugins</string>
 	</array>
 	<key>/System/Library/CoreServices/CoreTypes.bundle/Contents/Resources/GenericApplicationIcon.icns</key>
