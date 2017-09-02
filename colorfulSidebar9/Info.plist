@@ -17,13 +17,13 @@
 	<key>CFBundlePackageType</key>
 	<string>BNDL</string>
 	<key>CFBundleShortVersionString</key>
-	<string>1.4.0</string>
+	<string>1.5.0</string>
 	<key>CFBundleSignature</key>
 	<string>????</string>
 	<key>CFBundleVersion</key>
-	<string>135</string>
+	<string>140</string>
 	<key>NSHumanReadableCopyright</key>
-	<string>Copyright © 2016, Wolfgang Baird </string>
+	<string>Copyright © 2016 - 2017, Wolfgang Baird </string>
 	<key>NSPrincipalClass</key>
 	<string></string>
 	<key>SIMBLTargetApplications</key>

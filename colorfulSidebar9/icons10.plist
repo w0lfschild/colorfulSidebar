@@ -2,6 +2,19 @@
 <!DOCTYPE plist PUBLIC "-//Apple//DTD PLIST 1.0//EN" "http://www.apple.com/DTDs/PropertyList-1.0.dtd">
 <plist version="1.0">
 <dict>
+	<key>/Applications/App Store.app/Contents/Resources/AppIcon.icns</key>
+	<array>
+		<string>/Applications</string>
+		<string>~/Applications</string>
+	</array>
+	<key>/Applications/Utilities/Terminal.app/Contents/Resources/Terminal.icns</key>
+	<array>
+		<string>~/bin</string>
+	</array>
+	<key>/Applications/GitHub Desktop.app/Contents/Resources/electron.icns</key>
+	<array>
+		<string>~/GitHub</string>
+	</array>
 	<key>/Applications/GitHub Desktop.app/Contents/Resources/AppIcon-Release.icns</key>
 	<array>
 		<string>~/GitHub</string>
@@ -19,7 +32,7 @@
 	<array>
 		<string>~/Library/Application Support</string>
 	</array>
-	<key>/System/Library/CoreServices/CoreTypes.bundle/Contents/Resources/TrashIcon.icns</key>
+	<key>/System/Library/CoreServices/CoreTypes.bundle/Contents/Resources/FullTrashIcon.icns</key>
 	<array>
 		<string>~/.Trash</string>
 	</array>

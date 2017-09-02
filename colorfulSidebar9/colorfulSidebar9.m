@@ -3,13 +3,15 @@
 //  colorfulSidebar9
 //
 //  Created by Wolfgang Baird
-//  Copyright 2016 cvz.
+//  Copyright 2016 - 2017 Wolfgang Baird.
 //
 
 @import AppKit;
 #import "ZKSwizzle.h"
 
 static const char * const activeKey = "wwb_isactive";
+static dispatch_once_t ONCE_FI_TSidebarItemCell;
+NSInteger macOS;
 
 @interface colorfulSidebar9 : NSObject
 @end
@@ -24,14 +26,38 @@ struct TFENode {
 @end
 
 @interface wb_TSidebarItemCell : NSObject
-- (id)getNodeAsResolvedNode:(BOOL)arg1;
-+ (id)nodeFromNodeRef:(struct OpaqueNodeRef *)nodeRef;
-- (struct OpaqueIconRef *)createAlternativeIconRepresentationWithOptions:(id)arg1;
+@end
+
+@interface wb_NSImageView : NSControl
+@end
+
+@implementation wb_NSImageView
+
+- (void)_setImageView:(id)arg1 {
+    if ([[self class] isEqualTo:NSClassFromString(@"FI_TImageView")]) {
+        NSObject *aSuper = [self superview];
+        if ([[aSuper className] isEqualToString:@"FI_TSidebarItemCell"]) {
+            dispatch_once(&ONCE_FI_TSidebarItemCell, ^ { ZKSwizzle(wb_TSidebarItemCell, FI_TSidebarItemCell); });
+            SEL setIMG = NSSelectorFromString(@"wb_setImage:");
+            if (macOS < 11) {
+                [aSuper performSelector:setIMG withObject:aSuper];
+            } else {
+                SEL aSEL = @selector(subviews);
+                if ([aSuper respondsToSelector:aSEL])
+                    for (id i in [aSuper performSelector:aSEL])
+                        if ([i class] == NSClassFromString(@"TImageView") || [i class] == NSClassFromString(@"FI_TImageView") )
+                            [aSuper performSelector:setIMG withObject:i];
+            }
+        }
+    }
+    ZKOrig(void, arg1);
+}
+
 @end
 
 @implementation wb_TSidebarItemCell
 
-- (void)wb_setImage:(id)i {
+- (void)wb_setImage:(id)itemCell {
     SEL aSEL = @selector(accessibilityAttributeNames);
     if ([self respondsToSelector:aSEL] && [[self performSelector:aSEL] containsObject:NSAccessibilityURLAttribute]) {
         NSURL *aURL = [self accessibilityAttributeValue:NSAccessibilityURLAttribute];
@@ -62,9 +88,9 @@ struct TFENode {
         }
         if (!image) {
             aSEL = @selector(image);
-            if ([i respondsToSelector:aSEL]) {
-                NSImage *sidebarImage = [i performSelector:aSEL];
-                aSEL = @selector(sourceImage);
+            if ([itemCell respondsToSelector:aSEL]) {
+                NSImage *sidebarImage = [itemCell performSelector:aSEL];
+                aSEL = NSSelectorFromString(@"sourceImage");
                 if ([sidebarImage respondsToSelector:aSEL]) {
                     sidebarImage = [sidebarImage performSelector:aSEL];
                 }
@@ -74,7 +100,7 @@ struct TFENode {
                 // Tags
                 if (!image) {
                     if ([[sidebarImage representations] count] == 1) {
-                        image = [i performSelector:@selector(image)];
+                        image = [itemCell performSelector:@selector(image)];
                     }
                 }
             }
@@ -83,16 +109,18 @@ struct TFENode {
             Class cls = NSClassFromString(@"FINode");
             if (cls) {
                 struct TFENode *node = &ZKHookIvar(self, struct TFENode, "_node");
-                id finode = [cls nodeFromNodeRef:node->fNodeRef];
-                if ([finode respondsToSelector:@selector(createAlternativeIconRepresentationWithOptions:)]) {
-                    IconRef iconRef = [finode createAlternativeIconRepresentationWithOptions:nil];
+                SEL nodeFromNode = NSSelectorFromString(@"nodeFromNodeRef:");
+                id finode = [cls performSelector:nodeFromNode withObject:(id)node->fNodeRef];
+                SEL createAlt = NSSelectorFromString(@"createAlternativeIconRepresentationWithOptions:");
+                if ([finode respondsToSelector:createAlt]) {
+                    IconRef iconRef = (IconRef)[finode performSelector:createAlt withObject:nil];
                     image = [[[NSImage alloc] initWithIconRef:iconRef] autorelease];
                     ReleaseIconRef(iconRef);
                 }
             }
         }
         if (image)
-            [i setImage:image];
+            [itemCell setImage:image];
     }
 }
 
@@ -116,10 +144,10 @@ struct TFENode {
 
 @implementation wb_TImageView
 
-- (void)wb_bumping {
+- (void)wb_forceUpdate {
     NSNumber *hasBumped = objc_getAssociatedObject(self, activeKey);
     if (hasBumped == nil) {
-        double delayInSeconds = 0.1;
+        double delayInSeconds = 0.15;
         dispatch_time_t popTime = dispatch_time(DISPATCH_TIME_NOW, delayInSeconds * NSEC_PER_SEC);
         dispatch_after(popTime, dispatch_get_main_queue(), ^(void){
             SEL se = @selector(isHighlighted);
@@ -133,18 +161,21 @@ struct TFENode {
 }
 
 - (void)_updateImageView {
+//    NSLog(@"wb_ %s", __PRETTY_FUNCTION__);
+    [self wb_forceUpdate];
     ZKOrig(void);
-    [self wb_bumping];
 }
 
 - (void)updateLayer {
+//    NSLog(@"wb_ %s", __PRETTY_FUNCTION__);
+    [self wb_forceUpdate];
     ZKOrig(void);
-    [self wb_bumping];
 }
 
 - (void)layout {
+//    NSLog(@"wb_ %s", __PRETTY_FUNCTION__);
+    [self wb_forceUpdate];
     ZKOrig(void);
-    [self wb_bumping];
 }
 
 @end
@@ -152,27 +183,19 @@ struct TFENode {
 @implementation colorfulSidebar9
 
 + (void)load {
-    if (NSAppKitVersionNumber < 1138)
+    macOS = [[NSProcessInfo processInfo] operatingSystemVersion].minorVersion;
+    if (macOS < 9)
         return;
     
     if (!cfsbIconMappingDict) {
-        NSLog(@"Loading colorfulSidebar...");
-        
+        NSLog(@"wb_ Loading colorfulSidebar...");
         [self performSelector:@selector(setUpIconMappingDict)];
-        
-        if (NSClassFromString(@"TSidebarItemCell"))
-            ZKSwizzle(wb_TSidebarItemCell, TSidebarItemCell);
-        
-        if (NSClassFromString(@"FI_TSidebarItemCell"))
-            ZKSwizzle(wb_TSidebarItemCell, FI_TSidebarItemCell);
-        
-        if (NSClassFromString(@"TImageView"))
-            ZKSwizzle(wb_TImageView, TImageView);
-        
-        if (NSClassFromString(@"FI_TImageView"))
-            ZKSwizzle(wb_TImageView, FI_TImageView);
-    
-        NSLog(@"%@ loaded into %@ on macOS 10.%ld", [self class], [[NSBundle mainBundle] bundleIdentifier], [[NSProcessInfo processInfo] operatingSystemVersion].minorVersion);
+        ZKSwizzle(wb_NSImageView, NSImageView);
+        if (NSClassFromString(@"TSidebarItemCell")) ZKSwizzle(wb_TSidebarItemCell, TSidebarItemCell);
+        if (NSClassFromString(@"FI_TSidebarItemCell")) dispatch_once(&ONCE_FI_TSidebarItemCell, ^ { ZKSwizzle(wb_TSidebarItemCell, FI_TSidebarItemCell); });
+        if (NSClassFromString(@"TImageView")) ZKSwizzle(wb_TImageView, TImageView);
+        if (NSClassFromString(@"FI_TImageView")) ZKSwizzle(wb_TImageView, FI_TImageView);
+        NSLog(@"%@ loaded into %@ on macOS 10.%ld", [self class], [[NSBundle mainBundle] bundleIdentifier], macOS);
     }
     
     if ([[[NSBundle mainBundle] bundleIdentifier] isEqualToString:@"com.apple.finder"]) {
@@ -180,42 +203,18 @@ struct TFENode {
         for (NSMenuItem *i in [go itemArray]) {
             NSImage *image = nil;
             NSString *action = NSStringFromSelector([i action]);
-            if ([action isEqualToString:@"cmdGoToAllMyFiles:"])
-                image = [[NSImage alloc] initWithContentsOfFile:@"/System/Library/CoreServices/CoreTypes.bundle/Contents/Resources/AllMyFiles.icns"];
-            
-            if ([action isEqualToString:@"cmdGoToDocuments:"])
-                image = [[NSImage alloc] initWithContentsOfFile:@"/Applications/iBooks.app/Contents/Resources/iBooksAppIcon.icns"];
-            
-            if ([action isEqualToString:@"cmdGoToDesktop:"])
-                image = [[NSImage alloc] initWithContentsOfFile:@"/System/Library/PreferencePanes/Displays.prefPane/Contents/Resources/Displays.icns"];
-            
-            if ([action isEqualToString:@"cmdGoToDownloads:"])
-                image = [[NSImage alloc] initWithContentsOfFile:@"/System/Library/CoreServices/Installer.app/Contents/Resources/Installer.icns"];
-            
-            if ([action isEqualToString:@"cmdGoHome:"])
-                image = [[NSImage alloc] initWithContentsOfFile:@"/System/Library/CoreServices/CoreTypes.bundle/Contents/Resources/HomeFolderIcon.icns"];
-            
-            if ([action isEqualToString:@"cmdGoToUserLibrary:"])
-                image = [[NSImage alloc] initWithContentsOfFile:@"/System/Library/CoreServices/Siri.app/Contents/Resources/AppIcon.icns"];
-            
-            if ([action isEqualToString:@"cmdGoToComputer:"])
-                image = [[NSImage alloc] initWithContentsOfFile:@"/System/Library/CoreServices/CoreTypes.bundle/Contents/Resources/com.apple.macpro.icns"];
-            
-            if ([action isEqualToString:@"cmdGoToMeetingRoom:"])
-                image = [[NSImage alloc] initWithContentsOfFile:@"/System/Library/CoreServices/CoreTypes.bundle/Contents/Resources/AirDrop.icns"];
-            
-            if ([action isEqualToString:@"cmdGoToNetwork:"])
-                image = [[NSImage alloc] initWithContentsOfFile:@"/System/Library/CoreServices/CoreTypes.bundle/Contents/Resources/GenericNetworkIcon.icns"];
-            
-            if ([action isEqualToString:@"cmdGoToICloud:"])
-                image = [[NSImage alloc] initWithContentsOfFile:@"/System/Library/CoreServices/CoreTypes.bundle/Contents/Resources/iDiskGenericIcon.icns"];
-            
-            if ([action isEqualToString:@"cmdGoToApplications:"])
-                image = [[NSImage alloc] initWithContentsOfFile:@"/Applications/App Store.app/Contents/Resources/AppIcon.icns"];
-            
-            if ([action isEqualToString:@"cmdGoToUtilities:"])
-                image = [[NSImage alloc] initWithContentsOfFile:@"/Applications/Utilities/ColorSync Utility.app/Contents/Resources/ColorSyncUtility.icns"];
-
+            if ([action isEqualToString:@"cmdGoToAllMyFiles:"]) image = [[NSImage alloc] initWithContentsOfFile:@"/System/Library/CoreServices/CoreTypes.bundle/Contents/Resources/AllMyFiles.icns"];
+            if ([action isEqualToString:@"cmdGoToDocuments:"]) image = [[NSImage alloc] initWithContentsOfFile:@"/Applications/iBooks.app/Contents/Resources/iBooksAppIcon.icns"];
+            if ([action isEqualToString:@"cmdGoToDesktop:"]) image = [[NSImage alloc] initWithContentsOfFile:@"/System/Library/PreferencePanes/Displays.prefPane/Contents/Resources/Displays.icns"];
+            if ([action isEqualToString:@"cmdGoToDownloads:"]) image = [[NSImage alloc] initWithContentsOfFile:@"/System/Library/CoreServices/Installer.app/Contents/Resources/Installer.icns"];
+            if ([action isEqualToString:@"cmdGoHome:"]) image = [[NSImage alloc] initWithContentsOfFile:@"/System/Library/CoreServices/CoreTypes.bundle/Contents/Resources/HomeFolderIcon.icns"];
+            if ([action isEqualToString:@"cmdGoToUserLibrary:"]) image = [[NSImage alloc] initWithContentsOfFile:@"/System/Library/CoreServices/Siri.app/Contents/Resources/AppIcon.icns"];
+            if ([action isEqualToString:@"cmdGoToComputer:"]) image = [[NSImage alloc] initWithContentsOfFile:@"/System/Library/CoreServices/CoreTypes.bundle/Contents/Resources/com.apple.macpro.icns"];
+            if ([action isEqualToString:@"cmdGoToMeetingRoom:"]) image = [[NSImage alloc] initWithContentsOfFile:@"/System/Library/CoreServices/CoreTypes.bundle/Contents/Resources/AirDrop.icns"];
+            if ([action isEqualToString:@"cmdGoToNetwork:"]) image = [[NSImage alloc] initWithContentsOfFile:@"/System/Library/CoreServices/CoreTypes.bundle/Contents/Resources/GenericNetworkIcon.icns"];
+            if ([action isEqualToString:@"cmdGoToICloud:"]) image = [[NSImage alloc] initWithContentsOfFile:@"/System/Library/CoreServices/CoreTypes.bundle/Contents/Resources/iDiskGenericIcon.icns"];
+            if ([action isEqualToString:@"cmdGoToApplications:"]) image = [[NSImage alloc] initWithContentsOfFile:@"/Applications/App Store.app/Contents/Resources/AppIcon.icns"];
+            if ([action isEqualToString:@"cmdGoToUtilities:"]) image = [[NSImage alloc] initWithContentsOfFile:@"/Applications/Utilities/ColorSync Utility.app/Contents/Resources/ColorSyncUtility.icns"];
             if (image) {
                 [image setSize:NSMakeSize(16, 16)];
                 [i setImage:image];
