@@ -8,19 +8,23 @@
 
 /* Begin PBXBuildFile section */
 		C398D84715BD8B0700543187 /* colorfulSidebar9.m in Sources */ = {isa = PBXBuildFile; fileRef = C398D84615BD8B0700543187 /* colorfulSidebar9.m */; };
+		FB609B0920D0BEA8000C21FB /* icons14.plist in Resources */ = {isa = PBXBuildFile; fileRef = FB609B0820D0BEA8000C21FB /* icons14.plist */; };
 		FBAE21EE1CFCCA4F007E5A8E /* ZKSwizzle.m in Sources */ = {isa = PBXBuildFile; fileRef = FBAE21ED1CFCCA4F007E5A8E /* ZKSwizzle.m */; };
 		FBAE21F11CFD21AC007E5A8E /* icons.plist in Resources */ = {isa = PBXBuildFile; fileRef = FBAE21EF1CFD21AC007E5A8E /* icons.plist */; };
 		FBAE21F21CFD21AC007E5A8E /* icons10.plist in Resources */ = {isa = PBXBuildFile; fileRef = FBAE21F01CFD21AC007E5A8E /* icons10.plist */; };
+		FBF049DF210285110061BE54 /* 1126 in Resources */ = {isa = PBXBuildFile; fileRef = FBF049DE210285110061BE54 /* 1126 */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
 		8D5B49B6048680CD000E48DA /* colorfulSidebar9.bundle */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = colorfulSidebar9.bundle; sourceTree = BUILT_PRODUCTS_DIR; };
 		8D5B49B7048680CD000E48DA /* Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; name = Info.plist; path = colorfulSidebar9/Info.plist; sourceTree = "<group>"; };
 		C398D84615BD8B0700543187 /* colorfulSidebar9.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = colorfulSidebar9.m; path = colorfulSidebar9/colorfulSidebar9.m; sourceTree = "<group>"; };
+		FB609B0820D0BEA8000C21FB /* icons14.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; name = icons14.plist; path = colorfulSidebar9/icons14.plist; sourceTree = "<group>"; };
 		FBAE21EC1CFCCA4F007E5A8E /* ZKSwizzle.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = ZKSwizzle.h; path = colorfulSidebar9/ZKSwizzle.h; sourceTree = "<group>"; };
 		FBAE21ED1CFCCA4F007E5A8E /* ZKSwizzle.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = ZKSwizzle.m; path = colorfulSidebar9/ZKSwizzle.m; sourceTree = "<group>"; };
 		FBAE21EF1CFD21AC007E5A8E /* icons.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; name = icons.plist; path = colorfulSidebar9/icons.plist; sourceTree = "<group>"; };
 		FBAE21F01CFD21AC007E5A8E /* icons10.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; name = icons10.plist; path = colorfulSidebar9/icons10.plist; sourceTree = "<group>"; };
+		FBF049DE210285110061BE54 /* 1126 */ = {isa = PBXFileReference; lastKnownFileType = folder; path = 1126; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -37,6 +41,7 @@
 		089C166AFE841209C02AAC07 /* ColorfulSidebar */ = {
 			isa = PBXGroup;
 			children = (
+				FBF049DE210285110061BE54 /* 1126 */,
 				08FB77AFFE84173DC02AAC07 /* Classes */,
 				089C167CFE841241C02AAC07 /* Resources */,
 				19C28FB8FE9D52D311CA2CBB /* Products */,
@@ -49,6 +54,7 @@
 			children = (
 				FBAE21EF1CFD21AC007E5A8E /* icons.plist */,
 				FBAE21F01CFD21AC007E5A8E /* icons10.plist */,
+				FB609B0820D0BEA8000C21FB /* icons14.plist */,
 				8D5B49B7048680CD000E48DA /* Info.plist */,
 			);
 			name = Resources;
@@ -107,8 +113,14 @@
 		089C1669FE841209C02AAC07 /* Project object */ = {
 			isa = PBXProject;
 			attributes = {
-				LastUpgradeCheck = 0900;
+				LastUpgradeCheck = 1000;
 				ORGANIZATIONNAME = cvz.;
+				TargetAttributes = {
+					8D5B49AC048680CD000E48DA = {
+						DevelopmentTeam = EX596BNL45;
+						ProvisioningStyle = Automatic;
+					};
+				};
 			};
 			buildConfigurationList = 1DEB913E08733D840010E9CD /* Build configuration list for PBXProject "colorfulSidebar9" */;
 			compatibilityVersion = "Xcode 3.2";
@@ -132,6 +144,8 @@
 			buildActionMask = 2147483647;
 			files = (
 				FBAE21F21CFD21AC007E5A8E /* icons10.plist in Resources */,
+				FB609B0920D0BEA8000C21FB /* icons14.plist in Resources */,
+				FBF049DF210285110061BE54 /* 1126 in Resources */,
 				FBAE21F11CFD21AC007E5A8E /* icons.plist in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -155,8 +169,12 @@
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				ALWAYS_SEARCH_USER_PATHS = NO;
+				CLANG_ENABLE_OBJC_WEAK = YES;
+				CODE_SIGN_IDENTITY = "Mac Developer";
+				CODE_SIGN_STYLE = Automatic;
 				COMBINE_HIDPI_IMAGES = YES;
 				COPY_PHASE_STRIP = NO;
+				DEVELOPMENT_TEAM = EX596BNL45;
 				GCC_DYNAMIC_NO_PIC = NO;
 				GCC_ENABLE_FIX_AND_CONTINUE = YES;
 				GCC_MODEL_TUNING = G5;
@@ -166,6 +184,7 @@
 				INSTALL_PATH = "$(HOME)/Library/Bundles";
 				PRODUCT_BUNDLE_IDENTIFIER = "org.w0lf.${PRODUCT_NAME:rfc1034Identifier}";
 				PRODUCT_NAME = colorfulSidebar9;
+				PROVISIONING_PROFILE_SPECIFIER = "";
 				WRAPPER_EXTENSION = bundle;
 			};
 			name = Debug;
@@ -174,14 +193,19 @@
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				ALWAYS_SEARCH_USER_PATHS = NO;
+				CLANG_ENABLE_OBJC_WEAK = YES;
+				CODE_SIGN_IDENTITY = "Mac Developer";
+				CODE_SIGN_STYLE = Automatic;
 				COMBINE_HIDPI_IMAGES = YES;
 				DEBUG_INFORMATION_FORMAT = "dwarf-with-dsym";
+				DEVELOPMENT_TEAM = EX596BNL45;
 				GCC_MODEL_TUNING = G5;
 				GCC_PRECOMPILE_PREFIX_HEADER = YES;
 				INFOPLIST_FILE = "$(SRCROOT)/colorfulSidebar9/Info.plist";
 				INSTALL_PATH = "$(HOME)/Library/Bundles";
 				PRODUCT_BUNDLE_IDENTIFIER = "org.w0lf.${PRODUCT_NAME:rfc1034Identifier}";
 				PRODUCT_NAME = colorfulSidebar9;
+				PROVISIONING_PROFILE_SPECIFIER = "";
 				WRAPPER_EXTENSION = bundle;
 			};
 			name = Release;
@@ -195,11 +219,13 @@
 				CLANG_WARN_BOOL_CONVERSION = YES;
 				CLANG_WARN_COMMA = YES;
 				CLANG_WARN_CONSTANT_CONVERSION = YES;
+				CLANG_WARN_DEPRECATED_OBJC_IMPLEMENTATIONS = YES;
 				CLANG_WARN_EMPTY_BODY = YES;
 				CLANG_WARN_ENUM_CONVERSION = YES;
 				CLANG_WARN_INFINITE_RECURSION = YES;
 				CLANG_WARN_INT_CONVERSION = YES;
 				CLANG_WARN_NON_LITERAL_NULL_CONVERSION = YES;
+				CLANG_WARN_OBJC_IMPLICIT_RETAIN_SELF = YES;
 				CLANG_WARN_OBJC_LITERAL_CONVERSION = YES;
 				CLANG_WARN_RANGE_LOOP_ANALYSIS = YES;
 				CLANG_WARN_STRICT_PROTOTYPES = YES;
@@ -233,11 +259,13 @@
 				CLANG_WARN_BOOL_CONVERSION = YES;
 				CLANG_WARN_COMMA = YES;
 				CLANG_WARN_CONSTANT_CONVERSION = YES;
+				CLANG_WARN_DEPRECATED_OBJC_IMPLEMENTATIONS = YES;
 				CLANG_WARN_EMPTY_BODY = YES;
 				CLANG_WARN_ENUM_CONVERSION = YES;
 				CLANG_WARN_INFINITE_RECURSION = YES;
 				CLANG_WARN_INT_CONVERSION = YES;
 				CLANG_WARN_NON_LITERAL_NULL_CONVERSION = YES;
+				CLANG_WARN_OBJC_IMPLICIT_RETAIN_SELF = YES;
 				CLANG_WARN_OBJC_LITERAL_CONVERSION = YES;
 				CLANG_WARN_RANGE_LOOP_ANALYSIS = YES;
 				CLANG_WARN_STRICT_PROTOTYPES = YES;

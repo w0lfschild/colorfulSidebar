@@ -17,11 +17,11 @@
 	<key>CFBundlePackageType</key>
 	<string>BNDL</string>
 	<key>CFBundleShortVersionString</key>
-	<string>1.5.0</string>
+	<string>1.6.0</string>
 	<key>CFBundleSignature</key>
 	<string>????</string>
 	<key>CFBundleVersion</key>
-	<string>140</string>
+	<string>160</string>
 	<key>NSHumanReadableCopyright</key>
 	<string>Copyright © 2016 - 2017, Wolfgang Baird </string>
 	<key>NSPrincipalClass</key>
@@ -30,7 +30,7 @@
 	<array>
 		<dict>
 			<key>BundleIdentifier</key>
-			<string>*</string>
+			<string>com.apple.appkit.xpc.openAndSavePanelService</string>
 		</dict>
 		<dict>
 			<key>BundleIdentifier</key>
@@ -38,11 +38,7 @@
 		</dict>
 		<dict>
 			<key>BundleIdentifier</key>
-			<string>com.apple.appkit.xpc.openAndSavePanelService</string>
-		</dict>
-		<dict>
-			<key>BundleIdentifier</key>
-			<string>com.apple.finder</string>
+			<string>*</string>
 		</dict>
 	</array>
 </dict>
