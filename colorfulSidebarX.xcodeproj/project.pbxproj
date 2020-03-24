@@ -1,0 +1,404 @@
+// !$*UTF8*$!
+{
+	archiveVersion = 1;
+	classes = {
+	};
+	objectVersion = 46;
+	objects = {
+
+/* Begin PBXBuildFile section */
+		F3D5D09424297B5B0003EE62 /* icons10.plist in Resources */ = {isa = PBXBuildFile; fileRef = F3D5D09124297B5B0003EE62 /* icons10.plist */; };
+		F3D5D09524297B5B0003EE62 /* icons14.plist in Resources */ = {isa = PBXBuildFile; fileRef = F3D5D09224297B5B0003EE62 /* icons14.plist */; };
+		F3D5D09624297B5B0003EE62 /* icons9.plist in Resources */ = {isa = PBXBuildFile; fileRef = F3D5D09324297B5B0003EE62 /* icons9.plist */; };
+		F3D5D0B624297BDC0003EE62 /* logs.png in Resources */ = {isa = PBXBuildFile; fileRef = F3D5D0AC24297BDB0003EE62 /* logs.png */; };
+		F3D5D0B724297BDC0003EE62 /* preview.png in Resources */ = {isa = PBXBuildFile; fileRef = F3D5D0AD24297BDB0003EE62 /* preview.png */; };
+		F3D5D0B824297BDC0003EE62 /* InMailboxLarge.tiff in Resources */ = {isa = PBXBuildFile; fileRef = F3D5D0AE24297BDB0003EE62 /* InMailboxLarge.tiff */; };
+		F3D5D0B924297BDC0003EE62 /* DraftsMailboxLarge.tiff in Resources */ = {isa = PBXBuildFile; fileRef = F3D5D0AF24297BDB0003EE62 /* DraftsMailboxLarge.tiff */; };
+		F3D5D0BA24297BDC0003EE62 /* junkmail.tiff in Resources */ = {isa = PBXBuildFile; fileRef = F3D5D0B024297BDB0003EE62 /* junkmail.tiff */; };
+		F3D5D0BB24297BDC0003EE62 /* pinwheel.png in Resources */ = {isa = PBXBuildFile; fileRef = F3D5D0B124297BDB0003EE62 /* pinwheel.png */; };
+		F3D5D0BC24297BDC0003EE62 /* profit.png in Resources */ = {isa = PBXBuildFile; fileRef = F3D5D0B224297BDB0003EE62 /* profit.png */; };
+		F3D5D0BD24297BDC0003EE62 /* NormalMailboxLarge_ContainerOnly.tiff in Resources */ = {isa = PBXBuildFile; fileRef = F3D5D0B324297BDC0003EE62 /* NormalMailboxLarge_ContainerOnly.tiff */; };
+		F3D5D0BE24297BDC0003EE62 /* ArchiveMailbox.tiff in Resources */ = {isa = PBXBuildFile; fileRef = F3D5D0B424297BDC0003EE62 /* ArchiveMailbox.tiff */; };
+		F3D5D0BF24297BDC0003EE62 /* SentMailboxLarge.tiff in Resources */ = {isa = PBXBuildFile; fileRef = F3D5D0B524297BDC0003EE62 /* SentMailboxLarge.tiff */; };
+		F3D5D0C624297C040003EE62 /* ZKSwizzle.m in Sources */ = {isa = PBXBuildFile; fileRef = F3D5D0C424297C040003EE62 /* ZKSwizzle.m */; };
+		F3D5D0CA24297C310003EE62 /* JSRollCall.m in Sources */ = {isa = PBXBuildFile; fileRef = F3D5D0C924297C310003EE62 /* JSRollCall.m */; };
+		F3D5D0CD24297CDD0003EE62 /* Info.plist in Resources */ = {isa = PBXBuildFile; fileRef = F3D5D0CC24297CDD0003EE62 /* Info.plist */; };
+		F3D5D0CF24297CEA0003EE62 /* colorfulSidebarX.m in Sources */ = {isa = PBXBuildFile; fileRef = F3D5D0CE24297CEA0003EE62 /* colorfulSidebarX.m */; };
+/* End PBXBuildFile section */
+
+/* Begin PBXFileReference section */
+		8D5B49B6048680CD000E48DA /* colorfulSidebarX.bundle */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = colorfulSidebarX.bundle; sourceTree = BUILT_PRODUCTS_DIR; };
+		F3D5D09124297B5B0003EE62 /* icons10.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = icons10.plist; sourceTree = "<group>"; };
+		F3D5D09224297B5B0003EE62 /* icons14.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = icons14.plist; sourceTree = "<group>"; };
+		F3D5D09324297B5B0003EE62 /* icons9.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = icons9.plist; sourceTree = "<group>"; };
+		F3D5D0AC24297BDB0003EE62 /* logs.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = logs.png; sourceTree = "<group>"; };
+		F3D5D0AD24297BDB0003EE62 /* preview.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = preview.png; sourceTree = "<group>"; };
+		F3D5D0AE24297BDB0003EE62 /* InMailboxLarge.tiff */ = {isa = PBXFileReference; lastKnownFileType = image.tiff; path = InMailboxLarge.tiff; sourceTree = "<group>"; };
+		F3D5D0AF24297BDB0003EE62 /* DraftsMailboxLarge.tiff */ = {isa = PBXFileReference; lastKnownFileType = image.tiff; path = DraftsMailboxLarge.tiff; sourceTree = "<group>"; };
+		F3D5D0B024297BDB0003EE62 /* junkmail.tiff */ = {isa = PBXFileReference; lastKnownFileType = image.tiff; path = junkmail.tiff; sourceTree = "<group>"; };
+		F3D5D0B124297BDB0003EE62 /* pinwheel.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = pinwheel.png; sourceTree = "<group>"; };
+		F3D5D0B224297BDB0003EE62 /* profit.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = profit.png; sourceTree = "<group>"; };
+		F3D5D0B324297BDC0003EE62 /* NormalMailboxLarge_ContainerOnly.tiff */ = {isa = PBXFileReference; lastKnownFileType = image.tiff; path = NormalMailboxLarge_ContainerOnly.tiff; sourceTree = "<group>"; };
+		F3D5D0B424297BDC0003EE62 /* ArchiveMailbox.tiff */ = {isa = PBXFileReference; lastKnownFileType = image.tiff; path = ArchiveMailbox.tiff; sourceTree = "<group>"; };
+		F3D5D0B524297BDC0003EE62 /* SentMailboxLarge.tiff */ = {isa = PBXFileReference; lastKnownFileType = image.tiff; path = SentMailboxLarge.tiff; sourceTree = "<group>"; };
+		F3D5D0C424297C040003EE62 /* ZKSwizzle.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = ZKSwizzle.m; path = ../ZKSwizzle/ZKSwizzle.m; sourceTree = "<group>"; };
+		F3D5D0C524297C040003EE62 /* ZKSwizzle.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = ZKSwizzle.h; path = ../ZKSwizzle/ZKSwizzle.h; sourceTree = "<group>"; };
+		F3D5D0C824297C310003EE62 /* JSRollCall.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = JSRollCall.h; path = ../JSRollCall/JSRollCall.h; sourceTree = "<group>"; };
+		F3D5D0C924297C310003EE62 /* JSRollCall.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = JSRollCall.m; path = ../JSRollCall/JSRollCall.m; sourceTree = "<group>"; };
+		F3D5D0CC24297CDD0003EE62 /* Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		F3D5D0CE24297CEA0003EE62 /* colorfulSidebarX.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = colorfulSidebarX.m; sourceTree = "<group>"; };
+/* End PBXFileReference section */
+
+/* Begin PBXFrameworksBuildPhase section */
+		8D5B49B3048680CD000E48DA /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXFrameworksBuildPhase section */
+
+/* Begin PBXGroup section */
+		089C166AFE841209C02AAC07 /* ColorfulSidebar */ = {
+			isa = PBXGroup;
+			children = (
+				08FB77AFFE84173DC02AAC07 /* colorfulSidebarX */,
+				19C28FB8FE9D52D311CA2CBB /* Products */,
+			);
+			name = ColorfulSidebar;
+			sourceTree = "<group>";
+		};
+		08FB77AFFE84173DC02AAC07 /* colorfulSidebarX */ = {
+			isa = PBXGroup;
+			children = (
+				F3D5D0CB24297C340003EE62 /* JSRollCall */,
+				F3D5D0C724297C080003EE62 /* ZKSwizzle */,
+				F3D5D0AB24297BAF0003EE62 /* Image */,
+				F3D5D09024297B2D0003EE62 /* Plists */,
+				F3D5D0CE24297CEA0003EE62 /* colorfulSidebarX.m */,
+				F3D5D0CC24297CDD0003EE62 /* Info.plist */,
+			);
+			path = colorfulSidebarX;
+			sourceTree = "<group>";
+		};
+		19C28FB8FE9D52D311CA2CBB /* Products */ = {
+			isa = PBXGroup;
+			children = (
+				8D5B49B6048680CD000E48DA /* colorfulSidebarX.bundle */,
+			);
+			name = Products;
+			sourceTree = "<group>";
+		};
+		F3D5D09024297B2D0003EE62 /* Plists */ = {
+			isa = PBXGroup;
+			children = (
+				F3D5D09324297B5B0003EE62 /* icons9.plist */,
+				F3D5D09124297B5B0003EE62 /* icons10.plist */,
+				F3D5D09224297B5B0003EE62 /* icons14.plist */,
+			);
+			path = Plists;
+			sourceTree = "<group>";
+		};
+		F3D5D0AB24297BAF0003EE62 /* Image */ = {
+			isa = PBXGroup;
+			children = (
+				F3D5D0B424297BDC0003EE62 /* ArchiveMailbox.tiff */,
+				F3D5D0AF24297BDB0003EE62 /* DraftsMailboxLarge.tiff */,
+				F3D5D0AE24297BDB0003EE62 /* InMailboxLarge.tiff */,
+				F3D5D0B024297BDB0003EE62 /* junkmail.tiff */,
+				F3D5D0AC24297BDB0003EE62 /* logs.png */,
+				F3D5D0B324297BDC0003EE62 /* NormalMailboxLarge_ContainerOnly.tiff */,
+				F3D5D0B124297BDB0003EE62 /* pinwheel.png */,
+				F3D5D0AD24297BDB0003EE62 /* preview.png */,
+				F3D5D0B224297BDB0003EE62 /* profit.png */,
+				F3D5D0B524297BDC0003EE62 /* SentMailboxLarge.tiff */,
+			);
+			path = Image;
+			sourceTree = "<group>";
+		};
+		F3D5D0C724297C080003EE62 /* ZKSwizzle */ = {
+			isa = PBXGroup;
+			children = (
+				F3D5D0C524297C040003EE62 /* ZKSwizzle.h */,
+				F3D5D0C424297C040003EE62 /* ZKSwizzle.m */,
+			);
+			path = ZKSwizzle;
+			sourceTree = "<group>";
+		};
+		F3D5D0CB24297C340003EE62 /* JSRollCall */ = {
+			isa = PBXGroup;
+			children = (
+				F3D5D0C824297C310003EE62 /* JSRollCall.h */,
+				F3D5D0C924297C310003EE62 /* JSRollCall.m */,
+			);
+			path = JSRollCall;
+			sourceTree = "<group>";
+		};
+/* End PBXGroup section */
+
+/* Begin PBXNativeTarget section */
+		8D5B49AC048680CD000E48DA /* colorfulSidebarX */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = 1DEB913A08733D840010E9CD /* Build configuration list for PBXNativeTarget "colorfulSidebarX" */;
+			buildPhases = (
+				8D5B49AF048680CD000E48DA /* Resources */,
+				8D5B49B1048680CD000E48DA /* Sources */,
+				8D5B49B3048680CD000E48DA /* Frameworks */,
+				F3D5D0D524297D670003EE62 /* ShellScript */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+			);
+			name = colorfulSidebarX;
+			productInstallPath = "$(HOME)/Library/Bundles";
+			productName = ColorfulSidebar;
+			productReference = 8D5B49B6048680CD000E48DA /* colorfulSidebarX.bundle */;
+			productType = "com.apple.product-type.bundle";
+		};
+/* End PBXNativeTarget section */
+
+/* Begin PBXProject section */
+		089C1669FE841209C02AAC07 /* Project object */ = {
+			isa = PBXProject;
+			attributes = {
+				LastUpgradeCheck = 1130;
+				ORGANIZATIONNAME = cvz.;
+				TargetAttributes = {
+					8D5B49AC048680CD000E48DA = {
+						DevelopmentTeam = EX596BNL45;
+						ProvisioningStyle = Automatic;
+					};
+				};
+			};
+			buildConfigurationList = 1DEB913E08733D840010E9CD /* Build configuration list for PBXProject "colorfulSidebarX" */;
+			compatibilityVersion = "Xcode 3.2";
+			developmentRegion = en;
+			hasScannedForEncodings = 1;
+			knownRegions = (
+				en,
+				Base,
+			);
+			mainGroup = 089C166AFE841209C02AAC07 /* ColorfulSidebar */;
+			projectDirPath = "";
+			projectRoot = "";
+			targets = (
+				8D5B49AC048680CD000E48DA /* colorfulSidebarX */,
+			);
+		};
+/* End PBXProject section */
+
+/* Begin PBXResourcesBuildPhase section */
+		8D5B49AF048680CD000E48DA /* Resources */ = {
+			isa = PBXResourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				F3D5D0BE24297BDC0003EE62 /* ArchiveMailbox.tiff in Resources */,
+				F3D5D0B824297BDC0003EE62 /* InMailboxLarge.tiff in Resources */,
+				F3D5D0B924297BDC0003EE62 /* DraftsMailboxLarge.tiff in Resources */,
+				F3D5D0BB24297BDC0003EE62 /* pinwheel.png in Resources */,
+				F3D5D0BF24297BDC0003EE62 /* SentMailboxLarge.tiff in Resources */,
+				F3D5D0B624297BDC0003EE62 /* logs.png in Resources */,
+				F3D5D0CD24297CDD0003EE62 /* Info.plist in Resources */,
+				F3D5D09624297B5B0003EE62 /* icons9.plist in Resources */,
+				F3D5D09524297B5B0003EE62 /* icons14.plist in Resources */,
+				F3D5D0BD24297BDC0003EE62 /* NormalMailboxLarge_ContainerOnly.tiff in Resources */,
+				F3D5D09424297B5B0003EE62 /* icons10.plist in Resources */,
+				F3D5D0BC24297BDC0003EE62 /* profit.png in Resources */,
+				F3D5D0B724297BDC0003EE62 /* preview.png in Resources */,
+				F3D5D0BA24297BDC0003EE62 /* junkmail.tiff in Resources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXResourcesBuildPhase section */
+
+/* Begin PBXShellScriptBuildPhase section */
+		F3D5D0D524297D670003EE62 /* ShellScript */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputFileListPaths = (
+			);
+			inputPaths = (
+			);
+			outputFileListPaths = (
+			);
+			outputPaths = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "# Increment build number\n\nbuildNumber=$(/usr/libexec/PlistBuddy -c \"Print CFBundleVersion\" \"${INFOPLIST_FILE}\")\nbuildNumber=$(($buildNumber + 1))\n/usr/libexec/PlistBuddy -c \"Set :CFBundleVersion $buildNumber\" \"${INFOPLIST_FILE}\"\n";
+		};
+/* End PBXShellScriptBuildPhase section */
+
+/* Begin PBXSourcesBuildPhase section */
+		8D5B49B1048680CD000E48DA /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				F3D5D0CF24297CEA0003EE62 /* colorfulSidebarX.m in Sources */,
+				F3D5D0C624297C040003EE62 /* ZKSwizzle.m in Sources */,
+				F3D5D0CA24297C310003EE62 /* JSRollCall.m in Sources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXSourcesBuildPhase section */
+
+/* Begin XCBuildConfiguration section */
+		1DEB913B08733D840010E9CD /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ALWAYS_SEARCH_USER_PATHS = NO;
+				CLANG_ENABLE_OBJC_ARC = YES;
+				CLANG_ENABLE_OBJC_WEAK = YES;
+				CODE_SIGN_IDENTITY = "Mac Developer";
+				CODE_SIGN_STYLE = Automatic;
+				COMBINE_HIDPI_IMAGES = YES;
+				COPY_PHASE_STRIP = NO;
+				CURRENT_PROJECT_VERSION = 201;
+				DEPLOYMENT_LOCATION = YES;
+				DEVELOPMENT_TEAM = EX596BNL45;
+				DSTROOT = /;
+				GCC_DYNAMIC_NO_PIC = NO;
+				GCC_MODEL_TUNING = G5;
+				GCC_OPTIMIZATION_LEVEL = 0;
+				GCC_PRECOMPILE_PREFIX_HEADER = YES;
+				INFOPLIST_FILE = "$(SRCROOT)/colorfulSidebarX/Info.plist";
+				INSTALL_PATH = "/Library/Application Support/MacEnhance/Plugins";
+				MARKETING_VERSION = 2.0.1;
+				PRODUCT_BUNDLE_IDENTIFIER = com.macenhance.colorfulSidebarX;
+				PRODUCT_NAME = colorfulSidebarX;
+				PROVISIONING_PROFILE_SPECIFIER = "";
+				WRAPPER_EXTENSION = bundle;
+			};
+			name = Debug;
+		};
+		1DEB913C08733D840010E9CD /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ALWAYS_SEARCH_USER_PATHS = NO;
+				CLANG_ENABLE_OBJC_ARC = YES;
+				CLANG_ENABLE_OBJC_WEAK = YES;
+				CODE_SIGN_IDENTITY = "Mac Developer";
+				CODE_SIGN_STYLE = Automatic;
+				COMBINE_HIDPI_IMAGES = YES;
+				CURRENT_PROJECT_VERSION = 201;
+				DEBUG_INFORMATION_FORMAT = "dwarf-with-dsym";
+				DEPLOYMENT_LOCATION = YES;
+				DEVELOPMENT_TEAM = EX596BNL45;
+				DSTROOT = /;
+				GCC_MODEL_TUNING = G5;
+				GCC_PRECOMPILE_PREFIX_HEADER = YES;
+				INFOPLIST_FILE = "$(SRCROOT)/colorfulSidebarX/Info.plist";
+				INSTALL_PATH = "/Library/Application Support/MacEnhance/Plugins";
+				MARKETING_VERSION = 2.0.1;
+				PRODUCT_BUNDLE_IDENTIFIER = com.macenhance.colorfulSidebarX;
+				PRODUCT_NAME = colorfulSidebarX;
+				PROVISIONING_PROFILE_SPECIFIER = "";
+				WRAPPER_EXTENSION = bundle;
+			};
+			name = Release;
+		};
+		1DEB913F08733D840010E9CD /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				CLANG_ALLOW_NON_MODULAR_INCLUDES_IN_FRAMEWORK_MODULES = YES;
+				CLANG_ENABLE_MODULES = YES;
+				CLANG_WARN_BLOCK_CAPTURE_AUTORELEASING = YES;
+				CLANG_WARN_BOOL_CONVERSION = YES;
+				CLANG_WARN_COMMA = YES;
+				CLANG_WARN_CONSTANT_CONVERSION = YES;
+				CLANG_WARN_DEPRECATED_OBJC_IMPLEMENTATIONS = YES;
+				CLANG_WARN_EMPTY_BODY = YES;
+				CLANG_WARN_ENUM_CONVERSION = YES;
+				CLANG_WARN_INFINITE_RECURSION = YES;
+				CLANG_WARN_INT_CONVERSION = YES;
+				CLANG_WARN_NON_LITERAL_NULL_CONVERSION = YES;
+				CLANG_WARN_OBJC_IMPLICIT_RETAIN_SELF = YES;
+				CLANG_WARN_OBJC_LITERAL_CONVERSION = YES;
+				CLANG_WARN_RANGE_LOOP_ANALYSIS = YES;
+				CLANG_WARN_STRICT_PROTOTYPES = YES;
+				CLANG_WARN_SUSPICIOUS_MOVE = YES;
+				CLANG_WARN_UNREACHABLE_CODE = YES;
+				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
+				ENABLE_STRICT_OBJC_MSGSEND = YES;
+				ENABLE_TESTABILITY = YES;
+				GCC_C_LANGUAGE_STANDARD = gnu99;
+				GCC_NO_COMMON_BLOCKS = YES;
+				GCC_OPTIMIZATION_LEVEL = 0;
+				GCC_WARN_64_TO_32_BIT_CONVERSION = YES;
+				GCC_WARN_ABOUT_RETURN_TYPE = YES;
+				GCC_WARN_UNDECLARED_SELECTOR = YES;
+				GCC_WARN_UNINITIALIZED_AUTOS = YES;
+				GCC_WARN_UNUSED_FUNCTION = YES;
+				GCC_WARN_UNUSED_VARIABLE = YES;
+				MACOSX_DEPLOYMENT_TARGET = 10.9;
+				ONLY_ACTIVE_ARCH = YES;
+				SDKROOT = macosx;
+			};
+			name = Debug;
+		};
+		1DEB914008733D840010E9CD /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				CLANG_ALLOW_NON_MODULAR_INCLUDES_IN_FRAMEWORK_MODULES = YES;
+				CLANG_ENABLE_MODULES = YES;
+				CLANG_WARN_BLOCK_CAPTURE_AUTORELEASING = YES;
+				CLANG_WARN_BOOL_CONVERSION = YES;
+				CLANG_WARN_COMMA = YES;
+				CLANG_WARN_CONSTANT_CONVERSION = YES;
+				CLANG_WARN_DEPRECATED_OBJC_IMPLEMENTATIONS = YES;
+				CLANG_WARN_EMPTY_BODY = YES;
+				CLANG_WARN_ENUM_CONVERSION = YES;
+				CLANG_WARN_INFINITE_RECURSION = YES;
+				CLANG_WARN_INT_CONVERSION = YES;
+				CLANG_WARN_NON_LITERAL_NULL_CONVERSION = YES;
+				CLANG_WARN_OBJC_IMPLICIT_RETAIN_SELF = YES;
+				CLANG_WARN_OBJC_LITERAL_CONVERSION = YES;
+				CLANG_WARN_RANGE_LOOP_ANALYSIS = YES;
+				CLANG_WARN_STRICT_PROTOTYPES = YES;
+				CLANG_WARN_SUSPICIOUS_MOVE = YES;
+				CLANG_WARN_UNREACHABLE_CODE = YES;
+				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
+				ENABLE_STRICT_OBJC_MSGSEND = YES;
+				GCC_C_LANGUAGE_STANDARD = gnu99;
+				GCC_NO_COMMON_BLOCKS = YES;
+				GCC_WARN_64_TO_32_BIT_CONVERSION = YES;
+				GCC_WARN_ABOUT_RETURN_TYPE = YES;
+				GCC_WARN_UNDECLARED_SELECTOR = YES;
+				GCC_WARN_UNINITIALIZED_AUTOS = YES;
+				GCC_WARN_UNUSED_FUNCTION = YES;
+				GCC_WARN_UNUSED_VARIABLE = YES;
+				MACOSX_DEPLOYMENT_TARGET = 10.9;
+				ONLY_ACTIVE_ARCH = NO;
+				SDKROOT = macosx;
+			};
+			name = Release;
+		};
+/* End XCBuildConfiguration section */
+
+/* Begin XCConfigurationList section */
+		1DEB913A08733D840010E9CD /* Build configuration list for PBXNativeTarget "colorfulSidebarX" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				1DEB913B08733D840010E9CD /* Debug */,
+				1DEB913C08733D840010E9CD /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+		1DEB913E08733D840010E9CD /* Build configuration list for PBXProject "colorfulSidebarX" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				1DEB913F08733D840010E9CD /* Debug */,
+				1DEB914008733D840010E9CD /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+/* End XCConfigurationList section */
+	};
+	rootObject = 089C1669FE841209C02AAC07 /* Project object */;
+}
