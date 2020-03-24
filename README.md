@@ -11,7 +11,7 @@
 # Note:
 
 - You can customize the icons used by editing the  `icons.plist` that corresponds to your macOS version:
-    - macOS 10.9 :  `icons.plist`
+    - macOS 10.9 :  `icons9.plist`
     - macOS 10.10 - 10.13 : `icons10.plist`
     - macOS 10.14 + : `icons14.plist`
 
