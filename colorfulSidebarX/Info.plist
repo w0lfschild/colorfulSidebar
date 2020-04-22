@@ -17,11 +17,11 @@
 	<key>CFBundlePackageType</key>
 	<string>BNDL</string>
 	<key>CFBundleShortVersionString</key>
-	<string>$(MARKETING_VERSION)</string>
+	<string>2.0.3</string>
 	<key>CFBundleSignature</key>
 	<string>????</string>
 	<key>CFBundleVersion</key>
-	<string>238</string>
+	<string>241</string>
 	<key>NSHumanReadableCopyright</key>
 	<string>Copyright © 2016 - 2019, macEnhance</string>
 	<key>NSPrincipalClass</key>

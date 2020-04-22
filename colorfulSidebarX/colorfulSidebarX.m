@@ -52,25 +52,6 @@ ZKSwizzleInterface(mecsx_MailboxOutlineItemView, MailboxOutlineItemView, NSTable
     if (self.class == NSClassFromString(@"TImageView") || self.class == NSClassFromString(@"FI_TImageView")) {
         if ([self.superview class] == NSClassFromString(@"TSidebarItemCell") || [self.superview class] == NSClassFromString(@"FI_TSidebarItemCell")) {
             [self mecsx_setImage:self.superview];
-            
-            // Shitty hack to force reload in com.apple.appkit.xpc.openAndSavePanelService
-//            if ([NSProcessInfo.processInfo.processName isEqualToString:@"com.apple.appkit.xpc.openAndSavePanelService"]) {
-//                NSView* FI_TSidebarView = self.superview.superview.superview;
-//                for (NSView* v in FI_TSidebarView.subviews) {
-//                    NSButton *theButton = v.subviews.lastObject;
-//                    if ([theButton respondsToSelector: @selector(action)]) {
-//                        if ([NSStringFromSelector(theButton.action) isEqualToString:@"_outlineControlClicked:"]) {
-//                            if ([theButton respondsToSelector:@selector(tag)] && [theButton respondsToSelector:@selector(performClick:)]) {
-//                                if (theButton.tag != 1337) {
-//                                    [theButton performClick:nil];
-//                                    [theButton performClick:nil];
-//                                    theButton.tag = 1337;
-//                                }
-//                            }
-//                        }
-//                    }
-//                }
-//            }
         }
     }
 }
@@ -97,6 +78,18 @@ ZKSwizzleInterface(mecsx_MailboxOutlineItemView, MailboxOutlineItemView, NSTable
         }
         
         if (!image) {
+            aSEL = @selector(image);
+            if ([itemCell respondsToSelector:aSEL]) {
+                NSImage *sidebarImage = [self image];
+                aSEL = NSSelectorFromString(@"sourceImage");
+                if ([sidebarImage respondsToSelector:aSEL])
+                    sidebarImage = [sidebarImage performSelector:aSEL];
+                if ([sidebarImage respondsToSelector:@selector(name)])
+                    image = cfsbIconMappingDict[[sidebarImage name]];
+            }
+        }
+        
+        if (!image) {
             Class cls = NSClassFromString(@"FINode");
             if (cls) {
                 struct TFENode *node = &ZKHookIvar(itemCell, struct TFENode, "_node");
@@ -108,27 +101,18 @@ ZKSwizzleInterface(mecsx_MailboxOutlineItemView, MailboxOutlineItemView, NSTable
                 if (aURL)
                     image = cfsbIconMappingDict[[aURL absoluteString]];
                 
-                if ([finode respondsToSelector:createAlt]) {
-                    IconRef iconRef = (__bridge IconRef)[finode performSelector:createAlt withObject:nil];
-                    image = [[NSImage alloc] initWithIconRef:iconRef];
-                    ReleaseIconRef(iconRef);
-                }
-            }
-        }
-        
-        if (!image) {
-            aSEL = @selector(image);
-            if ([itemCell respondsToSelector:aSEL]) {
-                NSImage *sidebarImage = [self image];
-                aSEL = NSSelectorFromString(@"sourceImage");
-                if ([sidebarImage respondsToSelector:aSEL])
-                    sidebarImage = [sidebarImage performSelector:aSEL];
-                if ([sidebarImage respondsToSelector:@selector(name)])
-                    image = cfsbIconMappingDict[[sidebarImage name]];
                 // Tags
                 if (!image)
-                    if ([[sidebarImage representations] count] == 1)
+                    if ([[[self image] representations] count] == 1)
                         image = [self image];
+                
+                if (!image) {
+                    if ([finode respondsToSelector:createAlt]) {
+                        IconRef iconRef = (__bridge IconRef)[finode performSelector:createAlt withObject:nil];
+                        image = [[NSImage alloc] initWithIconRef:iconRef];
+                        ReleaseIconRef(iconRef);
+                    }
+                }
             }
         }
         
@@ -152,8 +136,8 @@ ZKSwizzleInterface(mecsx_MailboxOutlineItemView, MailboxOutlineItemView, NSTable
     dispatch_once(&onceToken, ^{
         macOS = NSProcessInfo.processInfo.operatingSystemVersion.minorVersion;
         
+        // Set up image dict and swizzle
         if (!cfsbIconMappingDict) {
-            // Set up image dict
             [colorfulSidebarX setUpIconMappingDict];
             ZKSwizzle(mecsx_NSImageView, NSImageView);
             NSLog(@"%@ loaded into %@ on macOS 10.%lu", [colorfulSidebarX class], [[NSBundle mainBundle] bundleIdentifier], (unsigned long)macOS);
@@ -162,15 +146,13 @@ ZKSwizzleInterface(mecsx_MailboxOutlineItemView, MailboxOutlineItemView, NSTable
         // Force update NSSidebarImages
         JSRollCall *rc = [JSRollCall new];
         dispatch_after(dispatch_time(DISPATCH_TIME_NOW, (int64_t)(0.2 * NSEC_PER_SEC)), dispatch_get_main_queue(), ^{
-            [rc allObjectsOfClassName:@"NSImageView" includeSubclass:YES performBlock:^(id obj) {
-                NSImageView* sbiv = (NSImageView*)obj;
+            NSSet *imageSet = [rc allObjectsOfClass:NSImageView.class includeSubclass:1];
+            for (NSImageView *sbiv in imageSet.allObjects) {
                 NSImage* sbi = sbiv.image;
-                if ([sbi.className isEqualToString:@"NSSidebarImage"]) {
-                    NSImage *replacementImage = cfsbIconMappingDict[sbi.name];
-                    if (replacementImage != nil)
+                if ([sbi.className isEqualToString:@"NSSidebarImage"])
+                    if (cfsbIconMappingDict[sbi.name] != nil)
                         [sbiv setImage:sbi];
-                }
-            }];
+            }
         });
         
         // Update Finder Go menu
@@ -191,7 +173,7 @@ ZKSwizzleInterface(mecsx_MailboxOutlineItemView, MailboxOutlineItemView, NSTable
 }
 
 + (void)setUpIconMappingDict {
-    NSString *path = [[NSBundle bundleForClass:self] pathForResource:@"icons" ofType:@"plist"];
+    NSString *path = [[NSBundle bundleForClass:self] pathForResource:@"icons9" ofType:@"plist"];
     if (macOS > 9)
         path = [[NSBundle bundleForClass:self] pathForResource:@"icons10" ofType:@"plist"];
     if (macOS > 13)

@@ -2,8 +2,23 @@
 <!DOCTYPE plist PUBLIC "-//Apple//DTD PLIST 1.0//EN" "http://www.apple.com/DTDs/PropertyList-1.0.dtd">
 <plist version="1.0">
 <dict>
+	<key>/Applications/MacForge.app/Contents/Resources/AppIcon.icns</key>
+	<array>
+		<string>/Library/Application Support/MacEnhance</string>
+		<string>~/Library/Application Support/MacEnhance</string>
+	</array>
+	<key>/Applications/GitHub Desktop.app/Contents/Resources/electron.icns</key>
+	<array>
+		<string>/Volumes/Backup/GitHub</string>
+		<string>~/GitHub</string>
+	</array>
+	<key>/Applications/Google Drive.app/Contents/Resources/GoogleDrive.icns</key>
+	<array>
+		<string>~/Google Drive</string>
+	</array>
 	<key>/Applications/App Store.app/Contents/Resources/AppIcon.icns</key>
 	<array>
+		<string>cmdGoToApplications</string>
 		<string>/Applications</string>
 		<string>~/Applications</string>
 	</array>
@@ -11,18 +26,27 @@
 	<array>
 		<string>~/bin</string>
 	</array>
-	<key>/Applications/GitHub Desktop.app/Contents/Resources/electron.icns</key>
+	<key>/Applications/iBooks.app/Contents/Resources/iBooksAppIcon.icns</key>
 	<array>
-		<string>~/GitHub</string>
+		<string>cmdGoToDocuments</string>
+		<string>~/Documents</string>
 	</array>
-	<key>/Applications/Google Drive.app/Contents/Resources/GoogleDrive.icns</key>
+	<key>/System/Library/CoreServices/CoreTypes.bundle/Contents/Resources/HomeFolderIcon.icns</key>
 	<array>
-		<string>~/Google Drive</string>
+		<string>cmdGoHome</string>
+	</array>
+	<key>/System/Library/CoreServices/CoreTypes.bundle/Contents/Resources/AllMyFiles.icns</key>
+	<array>
+		<string>cmdGoToAllMyFiles</string>
+	</array>
+	<key>/System/Library/CoreServices/Finder.app/Contents/Applications/Computer.app/Contents/Resources/OpenComputerAppIcon.icns</key>
+	<array>
+		<string>cmdGoToComputer</string>
 	</array>
 	<key>/System/Library/CoreServices/CoreTypes.bundle/Contents/Resources/KEXT.icns</key>
 	<array>
-		<string>~/Library/Application Support/SIMBL/Plugins</string>
-		<string>/Library/Application Support/SIMBL/Plugins</string>
+		<string>~/Library/Application Support/MacEnhance/Plugins</string>
+		<string>/Library/Application Support/MacEnhance/Plugins</string>
 	</array>
 	<key>/System/Library/CoreServices/CoreTypes.bundle/Contents/Resources/GenericApplicationIcon.icns</key>
 	<array>
@@ -30,7 +54,8 @@
 	</array>
 	<key>/System/Library/CoreServices/CoreTypes.bundle/Contents/Resources/FullTrashIcon.icns</key>
 	<array>
-		<string>~/.Trash</string>
+		<string>SidebarTrash</string>
+		<string>SidebarTrash-selected</string>
 	</array>
 	<key>/System/Library/CoreServices/AppDownloadLauncher.app/Contents/Resources/appStore.icns</key>
 	<array>
@@ -39,18 +64,17 @@
 	</array>
 	<key>/System/Library/PreferencePanes/Displays.prefPane/Contents/Resources/Displays.icns</key>
 	<array>
+		<string>cmdGoToDesktop</string>
 		<string>~/Desktop</string>
-	</array>
-	<key>/Applications/iBooks.app/Contents/Resources/iBooksAppIcon.icns</key>
-	<array>
-		<string>~/Documents</string>
 	</array>
 	<key>/System/Library/CoreServices/Installer.app/Contents/Resources/Installer.icns</key>
 	<array>
+		<string>cmdGoToDownloads</string>
 		<string>~/Downloads</string>
 	</array>
 	<key>tLib</key>
 	<array>
+		<string>cmdGoToUserLibrary</string>
 		<string>/Library</string>
 		<string>~/Library</string>
 	</array>
@@ -70,13 +94,20 @@
 	<array>
 		<string>iDisk</string>
 	</array>
+	<key>/System/Library/CoreServices/CoreTypes.bundle/Contents/Resources/GenericNetworkIcon.icns</key>
+	<array>
+		<string>cmdGoToNetwork</string>
+		<string>x-applefinder-vnode:All%E2%80%A6</string>
+	</array>
 	<key>/System/Library/CoreServices/CoreTypes.bundle/Contents/Resources/iDiskGenericIcon.icns</key>
 	<array>
+		<string>cmdGoToICloud</string>
 		<string>x-applefinder-vnode:CloudDocs%20libraries</string>
 		<string>x-applefinder-vnode:iCloud</string>
 	</array>
 	<key>/System/Library/CoreServices/CoreTypes.bundle/Contents/Resources/AirDrop.icns</key>
 	<array>
+		<string>cmdGoToAirDrop</string>
 		<string>x-applefinder-vnode:AirDrop</string>
 		<string>AirDrop</string>
 	</array>
@@ -101,26 +132,32 @@
 	</array>
 	<key>/System/Library/CoreServices/CoreTypes.bundle/Contents/Resources/SmartFolderIcon.icns</key>
 	<array>
+		<string>SidebarSmartFolder</string>
 		<string>SidebarSmartFolder-selected</string>
 	</array>
 	<key>/System/Library/CoreServices/CoreTypes.bundle/Contents/Resources/OpenFolderIcon.icns</key>
 	<array>
+		<string>SidebarFolder</string>
 		<string>SidebarFolder-selected</string>
 	</array>
 	<key>ArchiveMailbox.tiff</key>
 	<array>
+		<string>SidebarArchive</string>
 		<string>SidebarArchive-selected</string>
 	</array>
 	<key>DraftsMailboxLarge.tiff</key>
 	<array>
+		<string>SidebarDrafts</string>
 		<string>SidebarDrafts-selected</string>
 	</array>
 	<key>InMailboxLarge.tiff</key>
 	<array>
+		<string>SidebarInbox</string>
 		<string>SidebarInbox-selected</string>
 	</array>
 	<key>junkmail.tiff</key>
 	<array>
+		<string>SidebarJunk</string>
 		<string>SidebarJunk-selected</string>
 	</array>
 	<key>logs.png</key>
@@ -137,6 +174,7 @@
 	</array>
 	<key>SentMailboxLarge.tiff</key>
 	<array>
+		<string>SidebarSent</string>
 		<string>SidebarSent-selected</string>
 	</array>
 	<key>/System/Library/CoreServices/CoreTypes.bundle/Contents/Resources/AlertCautionIcon.icns</key>
@@ -157,6 +195,7 @@
 	</array>
 	<key>/System/Library/CoreServices/CoreTypes.bundle/Contents/Resources/ToolbarCustomizeIcon.icns</key>
 	<array>
+		<string>cmdGoToUtilities</string>
 		<string>Diagnostics</string>
 	</array>
 </dict>

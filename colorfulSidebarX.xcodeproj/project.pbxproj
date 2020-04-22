@@ -7,7 +7,6 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
-		F3D5D09424297B5B0003EE62 /* icons10.plist in Resources */ = {isa = PBXBuildFile; fileRef = F3D5D09124297B5B0003EE62 /* icons10.plist */; };
 		F3D5D09524297B5B0003EE62 /* icons14.plist in Resources */ = {isa = PBXBuildFile; fileRef = F3D5D09224297B5B0003EE62 /* icons14.plist */; };
 		F3D5D09624297B5B0003EE62 /* icons9.plist in Resources */ = {isa = PBXBuildFile; fileRef = F3D5D09324297B5B0003EE62 /* icons9.plist */; };
 		F3D5D0B624297BDC0003EE62 /* logs.png in Resources */ = {isa = PBXBuildFile; fileRef = F3D5D0AC24297BDB0003EE62 /* logs.png */; };
@@ -24,11 +23,11 @@
 		F3D5D0CA24297C310003EE62 /* JSRollCall.m in Sources */ = {isa = PBXBuildFile; fileRef = F3D5D0C924297C310003EE62 /* JSRollCall.m */; };
 		F3D5D0CD24297CDD0003EE62 /* Info.plist in Resources */ = {isa = PBXBuildFile; fileRef = F3D5D0CC24297CDD0003EE62 /* Info.plist */; };
 		F3D5D0CF24297CEA0003EE62 /* colorfulSidebarX.m in Sources */ = {isa = PBXBuildFile; fileRef = F3D5D0CE24297CEA0003EE62 /* colorfulSidebarX.m */; };
+		FB410B1E245008C40051CD67 /* icons10.plist in Resources */ = {isa = PBXBuildFile; fileRef = FB410B1D245008C40051CD67 /* icons10.plist */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
 		8D5B49B6048680CD000E48DA /* colorfulSidebarX.bundle */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = colorfulSidebarX.bundle; sourceTree = BUILT_PRODUCTS_DIR; };
-		F3D5D09124297B5B0003EE62 /* icons10.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = icons10.plist; sourceTree = "<group>"; };
 		F3D5D09224297B5B0003EE62 /* icons14.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = icons14.plist; sourceTree = "<group>"; };
 		F3D5D09324297B5B0003EE62 /* icons9.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = icons9.plist; sourceTree = "<group>"; };
 		F3D5D0AC24297BDB0003EE62 /* logs.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = logs.png; sourceTree = "<group>"; };
@@ -47,6 +46,7 @@
 		F3D5D0C924297C310003EE62 /* JSRollCall.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = JSRollCall.m; path = ../JSRollCall/JSRollCall.m; sourceTree = "<group>"; };
 		F3D5D0CC24297CDD0003EE62 /* Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		F3D5D0CE24297CEA0003EE62 /* colorfulSidebarX.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = colorfulSidebarX.m; sourceTree = "<group>"; };
+		FB410B1D245008C40051CD67 /* icons10.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = icons10.plist; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -94,7 +94,7 @@
 			isa = PBXGroup;
 			children = (
 				F3D5D09324297B5B0003EE62 /* icons9.plist */,
-				F3D5D09124297B5B0003EE62 /* icons10.plist */,
+				FB410B1D245008C40051CD67 /* icons10.plist */,
 				F3D5D09224297B5B0003EE62 /* icons14.plist */,
 			);
 			path = Plists;
@@ -204,7 +204,7 @@
 				F3D5D09624297B5B0003EE62 /* icons9.plist in Resources */,
 				F3D5D09524297B5B0003EE62 /* icons14.plist in Resources */,
 				F3D5D0BD24297BDC0003EE62 /* NormalMailboxLarge_ContainerOnly.tiff in Resources */,
-				F3D5D09424297B5B0003EE62 /* icons10.plist in Resources */,
+				FB410B1E245008C40051CD67 /* icons10.plist in Resources */,
 				F3D5D0BC24297BDC0003EE62 /* profit.png in Resources */,
 				F3D5D0B724297BDC0003EE62 /* preview.png in Resources */,
 				F3D5D0BA24297BDC0003EE62 /* junkmail.tiff in Resources */,
@@ -219,11 +219,7 @@
 			buildActionMask = 2147483647;
 			files = (
 			);
-			inputFileListPaths = (
-			);
 			inputPaths = (
-			);
-			outputFileListPaths = (
 			);
 			outputPaths = (
 			);
